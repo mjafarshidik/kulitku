@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Kulitku</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="scan_kulitmu_dengan_kulitku">Scan Kulitmu Dengan Kulitku</string>
+    <string name="pilih_dan_gunakan_skincare">Pilih dan Gunakan Skincare</string>
+    <string name="baca_artikel_amp_tulis_pengalamanmu"><![CDATA[Baca Artikel & Tulis Pengalamanmu]]></string>
+    <string name="pantau_perkembangan_kulitmu">Pantau Perkembangan Kulitmu</string>
 </resources>
