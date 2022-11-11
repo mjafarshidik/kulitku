@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home_base">
+
+    <fragment
+        android:id="@+id/navigation_home_base"
+        android:name="com.developer.kulitku.ui.home.HomeBaseFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home_base" >
+        <action
+            android:id="@+id/action_navigation_home_base_to_navigation_kulitku"
+            app:destination="@id/navigation_kulitku" />
+        <action
+            android:id="@+id/action_navigation_home_base_to_navigation_scan"
+            app:destination="@id/navigation_scan" />
+        <action
+            android:id="@+id/action_navigation_home_base_to_navigation_kubuku"
+            app:destination="@id/navigation_kubuku" />
+        <action
+            android:id="@+id/action_navigation_home_base_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:launchSingleTop="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_kubuku"
+        android:name="com.developer.kulitku.ui.KubukuFragment"
+        android:label="@string/title_kubuku"
+        tools:layout="@layout/fragment_kubuku" />
+
+    <fragment
+        android:id="@+id/navigation_scan"
+        android:name="com.developer.kulitku.ui.login.LoginFragment"
+        android:label="@string/title_scanku"
+        tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/navigation_kulitku"
+        android:name="com.developer.kulitku.ui.splash.OneIntroFragment"
+        android:label="@string/title_kulitku"
+        tools:layout="@layout/fragment_one_intro" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.developer.kulitku.ui.splash.TwoIntroFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_two_intro" />
+</navigation>

@@ -2,8 +2,31 @@
     <string name="app_name">Kulitku</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_bottom_nav">BottomNavActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_kubuku">KuBuKu</string>
+    <string name="title_profile">Profil</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_scanku">Scan</string>
+    <string name="title_kulitku">KulitKu</string>
     <string name="scan_kulitmu_dengan_kulitku">Scan Kulitmu Dengan Kulitku</string>
     <string name="pilih_dan_gunakan_skincare">Pilih dan Gunakan Skincare</string>
     <string name="baca_artikel_amp_tulis_pengalamanmu"><![CDATA[Baca Artikel & Tulis Pengalamanmu]]></string>
     <string name="pantau_perkembangan_kulitmu">Pantau Perkembangan Kulitmu</string>
+    <string name="email"><u>Email</u></string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Lupa password?</string>
+    <string name="do_not_have_account">Belum punya akun?</string>
+    <string name="sign_up_here">Daftar Disini</string>
+    <string name="login">Login</string>
+    <string name="asterisk">*</string>
+    <string name="enter">Masuk</string>
+    <string name="enter_email">Masukkan email</string>
+    <string name="enter_password">Masukkan password</string>
+    <string name="dokter_kamu_akan_segera_hadir">Dokter Kamu akan segera hadir</string>
+    <string name="nilai_kulitmu">Nilai Kulitmu :</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="desc_home">Mulai gunakan SkinPals agar kami dapat memberikan solusi khusus untuk kulitmu!</string>
+    <string name="halo">Halo!</string>
 </resources>
