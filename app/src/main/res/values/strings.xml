@@ -32,7 +32,7 @@
     <string name="informasi_tentang_kamu">Informasi Tentang Kamu</string>
     <string name="informasi_tentang_kulitmu">Informasi Tentang Kulitmu</string>
     <string name="nama">Nama</string>
-    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="gender">Jenis Kelamin</string>
     <string name="lanjutkan">Lanjutkan</string>
     <string name="tanggal_lahir">Tanggal Lahir</string>
     <string name="register">Register</string>
@@ -41,6 +41,18 @@
     <string name="daftar">Daftar</string>
     <string name="keluhan">Keluhan</string>
     <string name="please_wait">Mohon tunggu</string>
+    <string name="background">Background</string>
+    <string name="go_premium">Go Premium</string>
+    <string name="image_profile">Image Profile</string>
+    <string name="name_exp">Aras</string>
+    <string name="name">Nama</string>
+    <string name="skin_type">Jenis Kulit</string>
+    <string name="birth_date">Tanggal Lahir</string>
+    <string name="profile">Profile</string>
+    <string name="add_image">Add Image</string>
+    <string name="date_exp">10/10/2000</string>
+    <string name="email_exp">azel@gmail.com</string>
+    <string name="reset_password">Reset Password</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>

@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.developer.kulitku.ui.splash.TwoIntroFragment"
+        android:name="com.developer.kulitku.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_two_intro" />
 </navigation>
