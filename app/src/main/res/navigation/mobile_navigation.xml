@@ -10,19 +10,6 @@
         android:name="com.developer.kulitku.ui.home.HomeBaseFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home_base" >
-        <action
-            android:id="@+id/action_navigation_home_base_to_navigation_kulitku"
-            app:destination="@id/navigation_kulitku" />
-        <action
-            android:id="@+id/action_navigation_home_base_to_navigation_scan"
-            app:destination="@id/navigation_scan" />
-        <action
-            android:id="@+id/action_navigation_home_base_to_navigation_kubuku"
-            app:destination="@id/navigation_kubuku" />
-        <action
-            android:id="@+id/action_navigation_home_base_to_navigation_profile"
-            app:destination="@id/navigation_profile"
-            app:launchSingleTop="false" />
     </fragment>
 
     <fragment
@@ -47,5 +34,5 @@
         android:id="@+id/navigation_profile"
         android:name="com.developer.kulitku.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
-        tools:layout="@layout/fragment_two_intro" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>

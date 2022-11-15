@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
-class HomeBaseFragment : Fragment(),View.OnClickListener {
+class HomeBaseFragment : Fragment() {
     private lateinit var mAuth: FirebaseAuth
     private lateinit var binding : FragmentHomeBaseBinding
 
@@ -29,40 +29,6 @@ class HomeBaseFragment : Fragment(),View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.moveKubaca.setOnClickListener(this)
-        binding.moveKulitku.setOnClickListener(this)
         mAuth = Firebase.auth
-    }
-
-    override fun onClick(v: View?) {
-        when (v?.id) {
-            R.id.move_kubaca -> {
-                val mKubuku = KubukuFragment()
-                val mFragmentManager = parentFragmentManager
-                mFragmentManager.beginTransaction().apply {
-                    replace(
-                        R.id.nav_host_fragment_activity_bottom_nav,
-                        mKubuku,
-                        KubukuFragment::class.java.simpleName
-                    )
-                    addToBackStack(null)
-                    commit()
-                }
-            }
-            R.id.move_kulitku -> {
-                val mKulitku = LoginFragment()
-                val mFragmentManager = parentFragmentManager
-                mFragmentManager.beginTransaction().apply {
-                    replace(
-                        R.id.nav_host_fragment_activity_bottom_nav,
-                        mKulitku,
-                        LoginFragment::class.java.simpleName
-                    )
-                    addToBackStack(null)
-                    commit()
-                }
-            }
-        }
     }
 }

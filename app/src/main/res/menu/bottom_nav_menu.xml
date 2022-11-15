@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
         android:id="@+id/navigation_home_base"
         android:icon="@drawable/home_nav"
@@ -12,6 +11,10 @@
         android:title="@string/title_kubuku" />
 
     <item
+        android:id="@+id/placeholder"
+        android:title="" />
+
+    <item
         android:id="@+id/navigation_kulitku"
         android:icon="@drawable/kulitku_nav"
         android:title="@string/title_kulitku" />
@@ -20,6 +23,4 @@
         android:id="@+id/navigation_profile"
         android:icon="@drawable/profil_nav"
         android:title="@string/title_profile" />
-
-
 </menu>
