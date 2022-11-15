@@ -7,6 +7,7 @@ import com.developer.kulitku.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.orhanobut.hawk.Hawk
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth

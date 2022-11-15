@@ -17,6 +17,35 @@
         <item name="titleTextColor">@color/black</item>
     </style>
 
+    <style name="ThemeOverlay.App.DatePicker" parent="@style/ThemeOverlay.MaterialComponents.MaterialCalendar">
+    <item name="colorPrimary">@color/black2</item>
+    <item name="colorOnPrimary">@color/white</item>
+    <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.App.SmallComponent</item>
+    <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.App.MediumComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.App.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">cut</item>
+    </style>
+
+    <style name="ShapeAppearance.App.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSize">16dp</item>
+    </style>
+
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/inter_medium</item>
+    </style>
+
+    <style name="editTextShape" >
+        <item name="android:background">@drawable/shape_edit_text</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="android:textColorHint">@color/black2</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="minHeight">40dp</item>
+    </style>
+
     <style name="Theme.RoundedAppbar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.RoundedAppbar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 

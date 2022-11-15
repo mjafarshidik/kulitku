@@ -1,6 +1,7 @@
 package com.developer.kulitku.ui.home
 
 
+import android.content.Intent
 import com.developer.kulitku.R
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +11,8 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
 import com.developer.kulitku.ui.login.LoginFragment
-import com.developer.kulitku.ui.register.RegisterFragment
+import com.developer.kulitku.ui.register.PersonalInfoFragment
+import com.developer.kulitku.ui.register.RegisterActivity
 
 class HomeFragment : Fragment(), View.OnClickListener {
 
@@ -47,16 +49,9 @@ class HomeFragment : Fragment(), View.OnClickListener {
                 commit()
             }
         } else if (v.id == R.id.btnSIgnUp) {
-            val mCategoryFragment = RegisterFragment()
-            val mFragmentManager = parentFragmentManager
-            mFragmentManager.beginTransaction().apply {
-                replace(
-                    R.id.frame_container,
-                    mCategoryFragment,
-                    RegisterFragment::class.java.simpleName
-                )
-                addToBackStack(null)
-                commit()
+            requireActivity().run{
+                startActivity(Intent(this, RegisterActivity::class.java))
+                finish()
             }
         }
     }

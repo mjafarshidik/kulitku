@@ -29,4 +29,20 @@
     <string name="sign_up">Sign Up</string>
     <string name="desc_home">Mulai gunakan SkinPals agar kami dapat memberikan solusi khusus untuk kulitmu!</string>
     <string name="halo">Halo!</string>
+    <string name="informasi_tentang_kamu">Informasi Tentang Kamu</string>
+    <string name="informasi_tentang_kulitmu">Informasi Tentang Kulitmu</string>
+    <string name="nama">Nama</string>
+    <string name="jenis_kelamin">Jenis Kelamin</string>
+    <string name="lanjutkan">Lanjutkan</string>
+    <string name="tanggal_lahir">Tanggal Lahir</string>
+    <string name="register">Register</string>
+    <string name="step_01">Step 01</string>
+    <string name="step_02">Step 02</string>
+    <string name="daftar">Daftar</string>
+    <string name="keluhan">Keluhan</string>
+    <string name="please_wait">Mohon tunggu</string>
+    <string-array name="gender">
+        <item>Pria</item>
+        <item>Wanita</item>
+    </string-array>
 </resources>
