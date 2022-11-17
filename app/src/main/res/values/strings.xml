@@ -53,6 +53,8 @@
     <string name="date_exp">10/10/2000</string>
     <string name="email_exp">azel@gmail.com</string>
     <string name="reset_password">Reset Password</string>
+    <string name="kulitmu">Kulitmu</string>
+    <string name="scan_result">Hasil Pindai</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>

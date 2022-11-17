@@ -1,5 +1,6 @@
 package com.developer.kulitku.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -8,6 +9,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.developer.kulitku.R
 import com.developer.kulitku.databinding.ActivityHomeBinding
+import com.developer.kulitku.ui.scan.AddPhotoActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -33,6 +35,11 @@ class HomeActivity : AppCompatActivity() {
 
         navView.background = null
         navView.menu.getItem(2).isEnabled = false
+
+        binding.fabScan.setOnClickListener {
+            val intent = Intent(this, AddPhotoActivity::class.java)
+            startActivity(intent)
+        }
 
         supportActionBar?.hide()
     }
