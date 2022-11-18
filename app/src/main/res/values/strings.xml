@@ -71,6 +71,8 @@
     <string name="bisul">Bisul</string>
     <string name="on_development_one">Bestie Kulitmu akan segera hadir</string>
     <string name="on_development_two">Dokter kamu akan segera hadir</string>
+    <string name="desc_diagnosa">Kulit kamu terdiagnosa</string>
+    <string name="nama_label_scan">nama_label_scan</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>

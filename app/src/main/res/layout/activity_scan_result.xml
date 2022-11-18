@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FDF6F0"
     tools:context=".ui.scan.ScanResultActivity">
 
     <ImageButton
@@ -22,7 +23,7 @@
         app:layout_constraintVertical_bias="0.022" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textview_app_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -35,26 +36,15 @@
         app:layout_constraintStart_toEndOf="@+id/btnBack"
         app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
+
     <ImageView
         android:id="@+id/iv_photo_result"
         android:layout_width="314dp"
-        android:layout_height="536dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="526dp"
+        android:layout_marginStart="23dp"
         android:layout_marginTop="38dp"
+        android:layout_marginEnd="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:srcCompat="@tools:sample/avatars" />
-
-    <TextView
-        android:id="@+id/textview_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/scan_result"
-        android:fontFamily="@font/inter_medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/iv_photo_result"
-        app:layout_constraintStart_toStartOf="@+id/iv_photo_result"
-        app:layout_constraintTop_toBottomOf="@+id/iv_photo_result" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/textview_app_bar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

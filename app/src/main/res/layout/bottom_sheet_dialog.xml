@@ -1,0 +1,72 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frame_register"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FDF6F0"
+    tools:context=".ui.register.PersonalInfoFragment">
+
+    <TextView
+        android:id="@+id/textview_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/inter_medium"
+        android:text="@string/scan_result"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/divider"
+        app:layout_constraintStart_toStartOf="@+id/divider"
+        app:layout_constraintTop_toBottomOf="@+id/divider" />
+
+    <ImageView
+        android:id="@+id/ic_scan_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:src="@drawable/scan_result"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_result" />
+
+    <TextView
+        android:id="@+id/textview_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/montserrat_subrayada"
+        android:text="@string/desc_diagnosa"
+        app:layout_constraintEnd_toEndOf="@id/ic_scan_result"
+        app:layout_constraintStart_toStartOf="@+id/ic_scan_result"
+        app:layout_constraintTop_toBottomOf="@+id/ic_scan_result" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textview_subtitle"
+        app:layout_constraintStart_toStartOf="@+id/textview_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/textview_subtitle" />
+
+    <TextView
+        android:id="@+id/textview_label_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nama_label_scan"
+        app:layout_constraintEnd_toEndOf="@+id/textview_subtitle"
+        app:layout_constraintStart_toStartOf="@+id/textview_subtitle"
+        app:layout_constraintTop_toBottomOf="@+id/textview_subtitle" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="38dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="22dp"
+        android:background="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

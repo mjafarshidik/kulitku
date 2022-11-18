@@ -5,23 +5,18 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.Navigation
-import com.developer.kulitku.R
 import com.developer.kulitku.databinding.ActivityAddPhotoBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.common.util.concurrent.ListenableFuture
@@ -128,10 +123,6 @@ class AddPhotoActivity : AppCompatActivity() {
                 object : ImageCapture.OnImageSavedCallback {
                     override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults){
                         Log.i(TAG,"The image has been saved in ${file.toUri()}")
-                        val savedUri = Uri.fromFile(file)
-                        val msg = "Photo capture succeeded: $savedUri"
-                        Toast.makeText(this@AddPhotoActivity, msg, Toast.LENGTH_SHORT).show()
-                        Log.d(TAG, msg)
                     }
 
                     override fun onError(exception: ImageCaptureException) {
@@ -146,6 +137,21 @@ class AddPhotoActivity : AppCompatActivity() {
                 })
         }
     }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (resultCode == Activity.RESULT_OK) {
+//                    val bitmap = data?.extras?.get("data") as Bitmap
+//
+//                    //we are using coroutine image loader (coil)
+//                    binding..load(bitmap) {
+//                        crossfade(true)
+//                        crossfade(1000)
+//                    }
+//                }
+//            }
+//    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun animateFlash() {
