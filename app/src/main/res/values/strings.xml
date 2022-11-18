@@ -55,6 +55,22 @@
     <string name="reset_password">Reset Password</string>
     <string name="kulitmu">Kulitmu</string>
     <string name="scan_result">Hasil Pindai</string>
+    <string name="logo">Logo</string>
+    <string name="tagline">Lebih dari sahabat kulit</string>
+    <string name="greeting">Halo, Azel!</string>
+    <string name="date_home">25 Agustus 2022</string>
+    <string name="desc_survey_dashboard">Bagaimana\nkondisi\nkulitmu\nhari ini?</string>
+    <string name="daily_survey">Survey Harian</string>
+    <string name="your_skin_condition_today">Kondisi kulitmu hari ini</string>
+    <string name="value_skin_today">Yeay,\nKulit Kamu\nSehat!</string>
+    <string name="kubaca">KuBaca</string>
+    <string name="desc_kubaca">Artikel yang perlu kamu tahu</string>
+    <string name="title_kubaca_exp">Tips untuk Kulit Kering</string>
+    <string name="date_kubaca">Selasa, 16 Agustus 2022</string>
+    <string name="kulitku">KulitKu</string>
+    <string name="bisul">Bisul</string>
+    <string name="on_development_one">Bestie Kulitmu akan segera hadir</string>
+    <string name="on_development_two">Dokter kamu akan segera hadir</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>

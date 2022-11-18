@@ -16,7 +16,7 @@ import com.developer.kulitku.databinding.FragmentSkinInfoBinding
 class SkinInfoFragment : Fragment() {
     private var _binding: FragmentSkinInfoBinding? = null
     private val binding get() = _binding
-    private val viewModel: RegisterViewModel by viewModels()
+    //private val viewModel: RegisterViewModel by viewModels()
 
     private var siName = ""
     private var siEmail = ""
@@ -47,8 +47,8 @@ class SkinInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupSpinner()
-        initObservable()
-        signup()
+        //initObservable()
+        //signup()
 
         val args = this.arguments
         siName = args?.getString("NAME").toString()
@@ -65,33 +65,33 @@ class SkinInfoFragment : Fragment() {
         binding?.spinnerSkin?.adapter = spinnerStatus
     }
 
-    private fun initObservable() {
-        viewModel.registerStatus.observe(requireActivity()) {
-            when (it) {
-                is ResultState.Success -> {
-                    if (it.value) intentToLogin()
-                }
-                is ResultState.Failure -> {
-                    binding?.buttonSignup?.setText(com.developer.kulitku.R.string.daftar)
-                    Toast.makeText(requireContext(), it.throwable.message, Toast.LENGTH_SHORT)
-                        .show()
-                }
-                is ResultState.Loading -> {
-                    binding?.buttonSignup?.setText(com.developer.kulitku.R.string.please_wait)
-                }
-            }
-        }
+//    private fun initObservable() {
+//        viewModel.registerStatus.observe(requireActivity()) {
+//            when (it) {
+//                is ResultState.Success -> {
+//                    if (it.value) intentToLogin()
+//                }
+//                is ResultState.Failure -> {
+//                    binding?.buttonSignup?.setText(com.developer.kulitku.R.string.daftar)
+//                    Toast.makeText(requireContext(), it.throwable.message, Toast.LENGTH_SHORT)
+//                        .show()
+//                }
+//                is ResultState.Loading -> {
+//                    binding?.buttonSignup?.setText(com.developer.kulitku.R.string.please_wait)
+//                }
+//            }
+//        }
     }
 
-    private fun signup() {
-        binding?.apply {
-            buttonSignup.setOnClickListener {
-                viewModel.register(siName, siGender, siBirthdate, siEmail, siPassword)
-            }
-        }
-    }
+//    private fun signup() {
+//        binding?.apply {
+//            buttonSignup.setOnClickListener {
+//                viewModel.register(siName, siGender, siBirthdate, siEmail, siPassword)
+//            }
+//        }
+//    }
 
-    private fun intentToLogin() {
-        Toast.makeText(requireContext(), "Berhasil Daftar", Toast.LENGTH_SHORT).show()
-    }
-}
+//    private fun intentToLogin() {
+//        Toast.makeText(requireContext(), "Berhasil Daftar", Toast.LENGTH_SHORT).show()
+//    }
+//}

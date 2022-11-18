@@ -16,7 +16,7 @@ import java.util.*
 class PersonalInfoFragment : Fragment() {
     private var _binding: FragmentPersonalInfoBinding? = null
     private val binding get() = _binding
-    private val viewModel: RegisterViewModel by viewModels()
+    //private val viewModel: RegisterViewModel by viewModels()
 
     private var listGender = arrayOf("Jenis Kelamin", "Pria", "Wanita")
 
@@ -24,7 +24,6 @@ class PersonalInfoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentPersonalInfoBinding.inflate(inflater, container, false)
 
         binding?.apply {

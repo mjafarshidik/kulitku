@@ -18,4 +18,9 @@
     <color name="colorTrinidad">#C3542B</color>
     <color name="colorPacificBlue">#0096D1</color>
     <color name="colorSeashell">#FDF6F0</color>
+    <color name="colorPaprika">#823038</color>
+    <color name="colorDarkGrey">#6D6A6A</color>
+    <color name="colorLightBlue">#C1E4F0</color>
+    <color name="colorGolden">#F7C050</color>
+    <color name="colorDesertStorm">#EDE9E3</color>
 </resources>
