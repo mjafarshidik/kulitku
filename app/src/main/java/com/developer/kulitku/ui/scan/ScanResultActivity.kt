@@ -1,5 +1,6 @@
 package com.developer.kulitku.ui.scan
 
+import android.R
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -7,19 +8,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import com.developer.kulitku.R
 import com.developer.kulitku.data.source.remote.ResultState
 import com.developer.kulitku.databinding.ActivityScanResultBinding
+import com.developer.kulitku.databinding.BottomSheetDialogBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import id.zelory.compressor.Compressor
+import kotlinx.coroutines.launch
 import java.io.File
-import kotlin.math.log
 
 
 class ScanResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScanResultBinding
+    private lateinit var viewModel: ScanViewModel
+    private lateinit var labelScan: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,24 +34,29 @@ class ScanResultActivity : AppCompatActivity() {
         val modalBottomSheet = ModalBottomSheet()
         modalBottomSheet.show(supportFragmentManager, ModalBottomSheet.TAG)
 
-        val viewModel = ScanViewModel()
+        viewModel = ScanViewModel()
 
         val directory = File(externalMediaDirs[0].absolutePath)
         val files = directory.listFiles()
         val data = files.last()
 
-        viewModel.uploadImage(data)
+        lifecycleScope.launch {
+            val compressedImageFile = Compressor.compress(this@ScanResultActivity, data)
+            viewModel.uploadImage(compressedImageFile)
+        }
 
-        binding.progressBar.visibility = View.VISIBLE
-        viewModel.uploadStatus.observe(this) {
+        Glide.with(this)
+            .load(data)
+            .transform(RoundedCorners(32))
+            .apply(RequestOptions.overrideOf(314, 600))
+            .into(binding.ivPhotoResult)
+
+        viewModel.labelState.observe(this) {
             when (it) {
                 is ResultState.Success -> {
-                    Toast.makeText(
-                        this@ScanResultActivity,
-                        "sukses",
-                        Toast.LENGTH_LONG
-                    ).show()
                     binding.progressBar.visibility = View.INVISIBLE
+                    labelScan = it.value.result?.jsonMemberClass.toString()
+                    Log.d("EKO", labelScan)
                 }
                 is ResultState.Failure -> {
                     Toast.makeText(
@@ -61,25 +71,36 @@ class ScanResultActivity : AppCompatActivity() {
             }
         }
 
-        Glide.with(this)
-            .load(data)
-            .transform(RoundedCorners(32))
-            .apply(RequestOptions.overrideOf(314, 600))
-            .into(binding.ivPhotoResult)
+        val bundle = Bundle()
+        val d = "aa"
+        bundle.putString("message", d)
+        modalBottomSheet.arguments = bundle
 
         supportActionBar?.hide()
     }
-}
 
-class ModalBottomSheet : BottomSheetDialogFragment() {
+    class ModalBottomSheet : BottomSheetDialogFragment() {
+        private lateinit var binding: BottomSheetDialogBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.bottom_sheet_dialog, container, false)
+        override fun onCreateView(
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+        ): View {
+            binding = BottomSheetDialogBinding.inflate(inflater, container, false)
+            return binding.root
+        }
 
-    companion object {
-        const val TAG = "ModalBottomSheet"
+        override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+            super.onViewCreated(view, savedInstanceState)
+
+            val label = this.requireArguments().getString("message")
+            binding.textviewLabelScan.text = label
+            Log.d("EKA", label.toString())
+        }
+
+        companion object {
+            const val TAG = "ModalBottomSheet"
+
+        }
     }
 }

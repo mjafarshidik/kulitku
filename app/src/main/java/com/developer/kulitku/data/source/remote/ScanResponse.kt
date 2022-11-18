@@ -2,17 +2,17 @@ package com.developer.kulitku.data.source.remote
 
 import com.google.gson.annotations.SerializedName
 
-data class ScanResultResponse(
-
-	@field:SerializedName("code")
-	val code: Int? = null,
-
-	@field:SerializedName("data")
-	val data: Data? = null,
-
-	@field:SerializedName("message")
-	val message: String? = null
-)
+//data class ScanResultResponse(
+//
+//	@field:SerializedName("code")
+//	val code: Int? = null,
+//
+//	@field:SerializedName("data")
+//	val data: Data? = null,
+//
+//	@field:SerializedName("message")
+//	val message: String? = null
+//)
 
 data class Result(
 
@@ -23,7 +23,7 @@ data class Result(
 	val jsonMemberClass: String? = null
 )
 
-data class Data(
+data class ScanResponse(
 
 	@field:SerializedName("result")
 	val result: Result? = null,
