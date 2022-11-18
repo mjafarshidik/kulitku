@@ -23,6 +23,7 @@ class ScanViewModel() : ViewModel() {
     val labelState : LiveData<ResultState<ScanResponse>> = _labelState
 
     fun uploadImage(file: File) {
+        _labelState.value = ResultState.Loading
         val result = BitmapFactory.decodeFile(file.path)
         val compressQuality = 100
         result.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))

@@ -1,6 +1,5 @@
 package com.developer.kulitku.ui.scan
 
-import android.R
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -31,9 +30,6 @@ class ScanResultActivity : AppCompatActivity() {
         binding = ActivityScanResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val modalBottomSheet = ModalBottomSheet()
-        modalBottomSheet.show(supportFragmentManager, ModalBottomSheet.TAG)
-
         viewModel = ScanViewModel()
 
         val directory = File(externalMediaDirs[0].absolutePath)
@@ -53,10 +49,21 @@ class ScanResultActivity : AppCompatActivity() {
 
         viewModel.labelState.observe(this) {
             when (it) {
+                is ResultState.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
                 is ResultState.Success -> {
-                    binding.progressBar.visibility = View.INVISIBLE
                     labelScan = it.value.result?.jsonMemberClass.toString()
+
+                    val modalBottomSheet = ModalBottomSheet()
+                    val bundle = Bundle()
+
+                    modalBottomSheet.show(supportFragmentManager, ModalBottomSheet.TAG)
+                    bundle.putString("message", labelScan)
+                    modalBottomSheet.arguments = bundle
+
                     Log.d("EKO", labelScan)
+                    binding.progressBar.visibility = View.GONE
                 }
                 is ResultState.Failure -> {
                     Toast.makeText(
@@ -65,16 +72,8 @@ class ScanResultActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 }
-                is ResultState.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
             }
         }
-
-        val bundle = Bundle()
-        val d = "aa"
-        bundle.putString("message", d)
-        modalBottomSheet.arguments = bundle
 
         supportActionBar?.hide()
     }
@@ -93,7 +92,7 @@ class ScanResultActivity : AppCompatActivity() {
         override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
             super.onViewCreated(view, savedInstanceState)
 
-            val label = this.requireArguments().getString("message")
+            val label = arguments?.getString("message")
             binding.textviewLabelScan.text = label
             Log.d("EKA", label.toString())
         }
