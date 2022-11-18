@@ -14,17 +14,6 @@
 
     </androidx.camera.view.PreviewView>
 
-    <ImageView
-        android:id="@+id/imageview_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/preview"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <ImageButton
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
