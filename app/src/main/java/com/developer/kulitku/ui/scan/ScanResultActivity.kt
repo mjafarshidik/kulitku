@@ -1,21 +1,26 @@
 package com.developer.kulitku.ui.scan
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.developer.kulitku.R
+import com.developer.kulitku.data.source.remote.ResultState
 import com.developer.kulitku.databinding.ActivityScanResultBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.io.File
+import kotlin.math.log
 
 
 class ScanResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScanResultBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityScanResultBinding.inflate(layoutInflater)
@@ -24,9 +29,37 @@ class ScanResultActivity : AppCompatActivity() {
         val modalBottomSheet = ModalBottomSheet()
         modalBottomSheet.show(supportFragmentManager, ModalBottomSheet.TAG)
 
+        val viewModel = ScanViewModel()
+
         val directory = File(externalMediaDirs[0].absolutePath)
         val files = directory.listFiles()
-        val data = files?.last()
+        val data = files.last()
+
+        viewModel.uploadImage(data)
+
+        binding.progressBar.visibility = View.VISIBLE
+        viewModel.uploadStatus.observe(this) {
+            when (it) {
+                is ResultState.Success -> {
+                    Toast.makeText(
+                        this@ScanResultActivity,
+                        "sukses",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    binding.progressBar.visibility = View.INVISIBLE
+                }
+                is ResultState.Failure -> {
+                    Toast.makeText(
+                        this@ScanResultActivity,
+                        it.throwable.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+                is ResultState.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+            }
+        }
 
         Glide.with(this)
             .load(data)
