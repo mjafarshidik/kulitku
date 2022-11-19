@@ -20,6 +20,7 @@ import androidx.core.net.toUri
 import com.developer.kulitku.databinding.ActivityAddPhotoBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.common.util.concurrent.ListenableFuture
+import id.zelory.compressor.Compressor
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -28,16 +29,24 @@ class AddPhotoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddPhotoBinding
     private lateinit var cameraProviderFuture: ListenableFuture<ProcessCameraProvider>
     private lateinit var cameraSelector: CameraSelector
-    private var imageCapture: ImageCapture? = null
     private lateinit var imgCaptureExecutor: ExecutorService
-    private val cameraPermissionResult = registerForActivityResult(ActivityResultContracts.RequestPermission()){ permissionGranted->
-        if(permissionGranted){
-            // cut and paste the previous startCamera() call here.
-            startCamera()
-        }else {
-            Snackbar.make(binding.root,"The camera permission is required", Snackbar.LENGTH_INDEFINITE).show()
+    private lateinit var fileName: String
+    private lateinit var file: File
+    private lateinit var imageURI: String
+    private lateinit var outputFileOptions: ImageCapture.OutputFileOptions
+    private var imageCapture: ImageCapture? = null
+    private val cameraPermissionResult =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { permissionGranted ->
+            if (permissionGranted) {
+                startCamera()
+            } else {
+                Snackbar.make(
+                    binding.root,
+                    "The camera permission is required",
+                    Snackbar.LENGTH_INDEFINITE
+                ).show()
+            }
         }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +60,14 @@ class AddPhotoActivity : AppCompatActivity() {
 
         cameraPermissionResult.launch(android.Manifest.permission.CAMERA)
 
-        binding.buttonCaptureImage.setOnClickListener{
+        fileName = "JPEG_${System.currentTimeMillis()}"
+        file = File(externalMediaDirs[0], fileName)
+        imageURI = file.toUri().toString()
+
+        // Save the image in the above file
+        outputFileOptions = ImageCapture.OutputFileOptions.Builder(file).build()
+
+        binding.buttonCaptureImage.setOnClickListener {
             takePhoto()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 animateFlash()
@@ -62,9 +78,9 @@ class AddPhotoActivity : AppCompatActivity() {
 
         binding.buttonSwitchCamera.setOnClickListener {
             //change the cameraSelector
-            cameraSelector = if(cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA){
+            cameraSelector = if (cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
                 CameraSelector.DEFAULT_FRONT_CAMERA
-            }else {
+            } else {
                 CameraSelector.DEFAULT_BACK_CAMERA
             }
             // restart the camera
@@ -73,31 +89,28 @@ class AddPhotoActivity : AppCompatActivity() {
 
         binding.buttonSend.setOnClickListener {
             val intent = Intent(this, ScanResultActivity::class.java)
+            intent.putExtra(ScanResultActivity.EXTRA_IMG, imageURI)
             startActivity(intent)
-
-//            val fragment: Fragment = GalleryFragment()
-//            val fragmentManager: FragmentManager = supportFragmentManager
-//            fragmentManager.beginTransaction().replace(R.id.add_photo_container, fragment).commit()
         }
 
         supportActionBar?.hide()
     }
 
-    private fun startCamera(){
+    private fun startCamera() {
         // listening for data from the camera
         cameraProviderFuture.addListener({
             val cameraProvider = cameraProviderFuture.get()
 
             imageCapture = ImageCapture.Builder().build()
             // connecting a preview use case to the preview in the xml file.
-            val preview = Preview.Builder().build().also{
+            val preview = Preview.Builder().build().also {
                 it.setSurfaceProvider(binding.preview.surfaceProvider)
             }
-            try{
+            try {
                 // clear all the previous use cases first.
                 cameraProvider.unbindAll()
                 // binding the lifecycle of the camera to the lifecycle of the application.
-                cameraProvider.bindToLifecycle(this,cameraSelector,preview, imageCapture)
+                cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageCapture)
             } catch (e: Exception) {
                 Log.d(TAG, "Use case binding failed")
             }
@@ -105,53 +118,26 @@ class AddPhotoActivity : AppCompatActivity() {
         }, ContextCompat.getMainExecutor(this))
     }
 
-    private fun takePhoto(){
-        imageCapture?.let{
-            //Create a storage location whose fileName is timestamped in milliseconds.
-            val fileName = "JPEG_${System.currentTimeMillis()}"
-            val file = File(externalMediaDirs[0],fileName)
+    private fun takePhoto() {
+        imageCapture?.takePicture(
+            outputFileOptions,
+            imgCaptureExecutor,
+            object : ImageCapture.OnImageSavedCallback {
+                override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
+                    Log.i(TAG, "The image has been saved in ${file.toUri()}")
+                }
 
-            // Save the image in the above file
-            val outputFileOptions = ImageCapture.OutputFileOptions.Builder(file).build()
+                override fun onError(exception: ImageCaptureException) {
+                    Toast.makeText(
+                        binding.root.context,
+                        "Error taking photo",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    Log.d(TAG, "Error taking photo:$exception")
+                }
 
-            /* pass in the details of where and how the image is taken.(arguments 1 and 2 of takePicture)
-            pass in the details of what to do after an image is taken.(argument 3 of takePicture) */
-
-            it.takePicture(
-                outputFileOptions,
-                imgCaptureExecutor,
-                object : ImageCapture.OnImageSavedCallback {
-                    override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults){
-                        Log.i(TAG,"The image has been saved in ${file.toUri()}")
-                    }
-
-                    override fun onError(exception: ImageCaptureException) {
-                        Toast.makeText(
-                            binding.root.context,
-                            "Error taking photo",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        Log.d(TAG, "Error taking photo:$exception")
-                    }
-
-                })
-        }
+            })
     }
-
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if (resultCode == Activity.RESULT_OK) {
-//                    val bitmap = data?.extras?.get("data") as Bitmap
-//
-//                    //we are using coroutine image loader (coil)
-//                    binding..load(bitmap) {
-//                        crossfade(true)
-//                        crossfade(1000)
-//                    }
-//                }
-//            }
-//    }
 
     @RequiresApi(Build.VERSION_CODES.M)
     private fun animateFlash() {
