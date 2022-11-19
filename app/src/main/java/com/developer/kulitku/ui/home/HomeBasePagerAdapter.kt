@@ -20,5 +20,4 @@ class HomeBasePagerAdapter(fm: FragmentManager): FragmentPagerAdapter(fm){
     override fun getCount(): Int {
         return pages.size
     }
-
 }

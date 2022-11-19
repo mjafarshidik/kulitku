@@ -36,8 +36,8 @@ class HomeBaseFragment : Fragment() {
         mAuth = Firebase.auth
 
         binding.apply {
-            rvKubaca.setHasFixedSize(true)
             vpHome.adapter = HomeBasePagerAdapter(requireActivity().supportFragmentManager)
+            rvKubaca.setHasFixedSize(true)
             listKubaca.addAll(KubacaData.listData)
             listKulitku.addAll(KulitkuData.listData)
             showRecyclerList()

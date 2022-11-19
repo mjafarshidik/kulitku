@@ -2,16 +2,15 @@ package com.developer.kulitku.ui.home
 
 
 import android.content.Intent
-import com.developer.kulitku.R
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Button
+import androidx.fragment.app.Fragment
+import com.developer.kulitku.R
 import com.developer.kulitku.ui.login.LoginFragment
-import com.developer.kulitku.ui.register.PersonalInfoFragment
 import com.developer.kulitku.ui.register.RegisterActivity
 
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -20,7 +19,6 @@ class HomeFragment : Fragment(), View.OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
 
