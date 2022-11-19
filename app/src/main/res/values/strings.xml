@@ -73,6 +73,17 @@
     <string name="on_development_two">Dokter kamu akan segera hadir</string>
     <string name="desc_diagnosa">Kulit kamu terdiagnosa</string>
     <string name="nama_label_scan">nama_label_scan</string>
+    <string name="skinpals">SkinPals</string>
+    <string name="desc_kulitku">Lebih dari sahabat kulit</string>
+    <string name="desc_splash_one">Kenali Kulitmu dengan</string>
+    <string name="scan_face">Scan Wajah</string>
+    <string name="desc_splash_two">Pilih dan Gunakan</string>
+    <string name="skincare">Skincare</string>
+    <string name="desc_splash_three">Baca Artikel dan</string>
+    <string name="write_experience">Tulis Pengalamanmu</string>
+    <string name="desc_splash_four">Pantau Perkembangan</string>
+    <string name="your_skin">Kulitmu</string>
+    <string name="welcome">Selamat datang di</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>

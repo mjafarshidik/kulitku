@@ -1,6 +1,8 @@
 package com.developer.kulitku.data.source.remote
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 //data class ScanResultResponse(
 //
@@ -14,6 +16,7 @@ import com.google.gson.annotations.SerializedName
 //	val message: String? = null
 //)
 
+@Parcelize
 data class Result(
 
 	@field:SerializedName("message")
@@ -21,8 +24,9 @@ data class Result(
 
 	@field:SerializedName("class")
 	val jsonMemberClass: String? = null
-)
+) : Parcelable
 
+@Parcelize
 data class ScanResponse(
 
 	@field:SerializedName("result")
@@ -33,4 +37,4 @@ data class ScanResponse(
 
 	@field:SerializedName("kandungan")
 	val kandungan: List<String?>? = null
-)
+): Parcelable

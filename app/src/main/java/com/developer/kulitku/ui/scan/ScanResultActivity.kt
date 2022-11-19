@@ -76,6 +76,8 @@ class ScanResultActivity : AppCompatActivity() {
         }
 
         supportActionBar?.hide()
+
+
     }
 
     class ModalBottomSheet : BottomSheetDialogFragment() {

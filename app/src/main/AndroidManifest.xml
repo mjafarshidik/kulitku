@@ -48,9 +48,6 @@
             android:name=".ui.scan.AddPhotoActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.home.BottomNavigationActivity"
-            android:exported="false" />
-        <activity
             android:name=".ui.home.HomeActivity"
             android:exported="true" />
     </application>

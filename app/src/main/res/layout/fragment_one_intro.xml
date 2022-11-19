@@ -1,24 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FDF6F0"
+    android:background="@color/colorDerby"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="30dp">
 
     <ImageView
+        android:id="@+id/imageView8"
         android:layout_width="247dp"
         android:layout_height="282dp"
-        android:src="@drawable/acne_girl" />
+        android:src="@drawable/acne_girl"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_width="221dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:text="@string/scan_kulitmu_dengan_kulitku"
-        android:textColor="#293942"
-        android:textSize="24sp"
-        android:textStyle="bold" />
-</LinearLayout>
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/desc_splash_one"
+        android:fontFamily="@font/inter_medium"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/inter_bold"
+        android:text="@string/scan_face"
+        android:textSize="28sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

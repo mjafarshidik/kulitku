@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200">
+    android:background="@color/colorDerby">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/vpIntroSlider"
@@ -13,15 +13,16 @@
 
     <com.developer.kulitku.ui.splash.IndicatorLayout
         android:id="@+id/indicatorLayout"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="700dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center_horizontal"
         android:orientation="horizontal"
         app:indicatorCount="4"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="30dp" />
+        app:layout_constraintBottom_toTopOf="@+id/tvNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvSkip"
@@ -30,7 +31,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
         android:layout_marginStart="30dp"
-        android:layout_marginEnd="121dp"
         android:background="?selectableItemBackground"
         android:clickable="true"
         android:minHeight="48dp"
@@ -39,18 +39,17 @@
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvNext"
+        app:layout_constraintBottom_toBottomOf="@+id/tvNext"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/indicatorLayout" />
+        app:layout_constraintTop_toTopOf="@+id/tvNext" />
 
     <ImageView
         android:id="@+id/tvNext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/indicatorLayout"
-        app:srcCompat="@drawable/next_green" />
+        app:srcCompat="@drawable/next" />
 </androidx.constraintlayout.widget.ConstraintLayout>

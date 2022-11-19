@@ -31,7 +31,7 @@ class SliderActivity : AppCompatActivity() {
 
         vpIntroSlider.adapter = adapter
         fragmentList.addAll(listOf(
-            OneIntroFragment(), TwoIntroFragment(), ThreeIntroFragment(), FourIntroFragment()
+            ZeroIntroFragment(), OneIntroFragment(), TwoIntroFragment(), ThreeIntroFragment(), FourIntroFragment()
         ))
         adapter.setFragmentList(fragmentList)
         indicatorLayout.setIndicatorCount(adapter.itemCount)
