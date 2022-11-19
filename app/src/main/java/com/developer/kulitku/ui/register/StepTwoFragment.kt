@@ -1,6 +1,7 @@
 package com.developer.kulitku.ui.register
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,15 +9,14 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.navArgs
 import com.developer.kulitku.data.source.remote.ResultState
-import com.developer.kulitku.databinding.FragmentSkinInfoBinding
+import com.developer.kulitku.databinding.FragmentStepTwoBinding
 
 
-class SkinInfoFragment : Fragment() {
-    private var _binding: FragmentSkinInfoBinding? = null
+class StepTwoFragment : Fragment() {
+    private var _binding: FragmentStepTwoBinding? = null
     private val binding get() = _binding
-    //private val viewModel: RegisterViewModel by viewModels()
+    private val viewModel: RegisterViewModel by viewModels()
 
     private var siName = ""
     private var siEmail = ""
@@ -38,7 +38,7 @@ class SkinInfoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding = FragmentSkinInfoBinding.inflate(inflater, container, false)
+        _binding = FragmentStepTwoBinding.inflate(inflater, container, false)
 
         return binding?.root
     }
@@ -47,15 +47,17 @@ class SkinInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupSpinner()
-        //initObservable()
-        //signup()
+//        initObservable()
+//        signup()
 
-        val args = this.arguments
-        siName = args?.getString("NAME").toString()
-        siEmail = args?.getString("EMAIL").toString()
-        siBirthdate = args?.getString("BIRTHDATE").toString()
-        siPassword = args?.getString("PASSWORD").toString()
-        siGender = "Pria"
+//        val args = this.arguments
+//        siName = args?.getString(EXTRA_NAME).toString()
+//        siEmail = args?.getString(EXTRA_EMAIL).toString()
+//        siBirthdate = args?.getString(EXTRA_BIRTHDATE).toString()
+//        siPassword = args?.getString(EXTRA_PASSWORD).toString()
+//        siGender = "Pria"
+//
+//        Log.d("EK", siName)
     }
 
     private fun setupSpinner() {
@@ -65,7 +67,7 @@ class SkinInfoFragment : Fragment() {
         binding?.spinnerSkin?.adapter = spinnerStatus
     }
 
-//    private fun initObservable() {
+    private fun initObservable() {
 //        viewModel.registerStatus.observe(requireActivity()) {
 //            when (it) {
 //                is ResultState.Success -> {
@@ -83,15 +85,22 @@ class SkinInfoFragment : Fragment() {
 //        }
     }
 
-//    private fun signup() {
-//        binding?.apply {
+    private fun signup() {
+        binding?.apply {
 //            buttonSignup.setOnClickListener {
 //                viewModel.register(siName, siGender, siBirthdate, siEmail, siPassword)
 //            }
-//        }
-//    }
+        }
+    }
 
-//    private fun intentToLogin() {
-//        Toast.makeText(requireContext(), "Berhasil Daftar", Toast.LENGTH_SHORT).show()
-//    }
-//}
+    private fun intentToLogin() {
+        Toast.makeText(requireContext(), "Berhasil Daftar", Toast.LENGTH_SHORT).show()
+    }
+
+    companion object {
+        const val EXTRA_NAME = "extra_name"
+        const val EXTRA_EMAIL = "extra_email"
+        const val EXTRA_BIRTHDATE = "extra_birthdate"
+        const val EXTRA_PASSWORD = "extra_password"
+    }
+}

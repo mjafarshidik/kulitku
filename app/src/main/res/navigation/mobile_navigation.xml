@@ -6,6 +6,13 @@
     app:startDestination="@+id/navigation_home_base">
 
     <fragment
+        android:id="@+id/navigation_auth"
+        android:name="com.developer.kulitku.ui.auth.AuthFragment"
+        android:label="Auth"
+        tools:layout="@layout/fragment_auth">
+
+    </fragment>
+    <fragment
         android:id="@+id/navigation_home_base"
         android:name="com.developer.kulitku.ui.home.HomeBaseFragment"
         android:label="@string/title_home"
