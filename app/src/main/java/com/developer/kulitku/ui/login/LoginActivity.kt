@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.developer.kulitku.databinding.ActivityLoginBinding
 import com.developer.kulitku.ui.home.HomeActivity
+import com.developer.kulitku.ui.register.RegisterActivity
 import com.developer.kulitku.ui.register.RegisterViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -33,10 +34,15 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.email.text.toString()
             val password = binding.password.text.toString()
             if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-                Toast.makeText(this, "Email atau password tidak boleh kosong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Email atau password tidak boleh kosong", Toast.LENGTH_SHORT)
+                    .show()
             } else {
                 signIn(email, password)
             }
+        }
+
+        binding.textviewSignup.setOnClickListener {
+            startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
 
