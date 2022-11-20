@@ -86,6 +86,8 @@
     <string name="welcome">Selamat datang di</string>
     <string name="title_disease">Tinea Versicolor</string>
     <string name="desc_disease">Pengertian, Gejala, Bentuk Anatomi, Perawatan</string>
+    <string name="result_title">Hasil : Jerawat</string>
+    <string name="date_kulitku_exp">18 Agustus 2022, 14:59:12</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>

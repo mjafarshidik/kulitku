@@ -9,6 +9,7 @@
     <color name="black2">#80293942</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorGreenCaper">#AEBE89</color>
+    <color name="colorGreenLightCaper">#B3CE73</color>
     <color name="colorElephant">#293942</color>
     <color name="colorRed">#FF0000</color>
     <color name="colorGrey">#6D6A6A</color>
@@ -24,4 +25,5 @@
     <color name="colorGolden">#F7C050</color>
     <color name="colorDesertStorm">#EDE9E3</color>
     <color name="colorDerby">#F3E2C7</color>
+    <color name="colorStarkWhite">#CAC5C0</color>
 </resources>

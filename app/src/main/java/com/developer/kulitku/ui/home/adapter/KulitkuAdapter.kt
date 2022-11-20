@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import com.developer.kulitku.R
 import com.developer.kulitku.data.source.remote.kulitku.KulitkuResponse
 
@@ -22,7 +21,7 @@ class KulitkuAdapter (private val listKulitku: ArrayList<KulitkuResponse>) : Rec
         parent: ViewGroup,
         viewType: Int
     ): KulitkuAdapter.ListViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_kulitku, parent, false)
+        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_kulitku_home, parent, false)
         return ListViewHolder(view)
     }
 

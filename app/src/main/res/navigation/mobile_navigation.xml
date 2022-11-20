@@ -5,13 +5,7 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home_base">
 
-    <fragment
-        android:id="@+id/navigation_auth"
-        android:name="com.developer.kulitku.ui.auth.AuthFragment"
-        android:label="Auth"
-        tools:layout="@layout/fragment_auth">
 
-    </fragment>
     <fragment
         android:id="@+id/navigation_home_base"
         android:name="com.developer.kulitku.ui.home.HomeBaseFragment"
@@ -21,31 +15,21 @@
 
     <fragment
         android:id="@+id/navigation_kubuku"
-        android:name="com.developer.kulitku.ui.KubukuFragment"
+        android:name="com.developer.kulitku.ui.kubuku.KubukuFragment"
         android:label="@string/title_kubuku"
         tools:layout="@layout/fragment_kubuku" />
 
-    <fragment
-        android:id="@+id/navigation_scan"
-        android:name="com.developer.kulitku.ui.login.LoginFragment"
-        android:label="@string/title_scanku"
-        tools:layout="@layout/fragment_login" />
 
     <fragment
         android:id="@+id/navigation_kulitku"
-        android:name="com.developer.kulitku.ui.splash.OneIntroFragment"
+        android:name="com.developer.kulitku.ui.kulitku.KulitkuFragment"
         android:label="@string/title_kulitku"
-        tools:layout="@layout/fragment_one_intro" />
+        tools:layout="@layout/fragment_kulitku" />
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.developer.kulitku.ui.profile.ProfileFragment"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
-
-    <fragment
-        android:id="@+id/navigation_gallery"
-        android:name="com.developer.kulitku.ui.scan.GalleryFragment"
-        android:label="@string/title_profile"
-        tools:layout="@layout/fragment_gallery" />
+    
 </navigation>
