@@ -88,6 +88,10 @@
     <string name="desc_disease">Pengertian, Gejala, Bentuk Anatomi, Perawatan</string>
     <string name="result_title">Hasil : Jerawat</string>
     <string name="date_kulitku_exp">18 Agustus 2022, 14:59:12</string>
+    <string name="exit">Keluar</string>
+    <string name="options">Pengaturan</string>
+    <string name="exp_name_profile">Azel</string>
+    <string name="exp_email_profile">azel@gmail.com</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>
