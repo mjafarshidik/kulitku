@@ -84,6 +84,8 @@
     <string name="desc_splash_four">Pantau Perkembangan</string>
     <string name="your_skin">Kulitmu</string>
     <string name="welcome">Selamat datang di</string>
+    <string name="title_disease">Tinea Versicolor</string>
+    <string name="desc_disease">Pengertian, Gejala, Bentuk Anatomi, Perawatan</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>
