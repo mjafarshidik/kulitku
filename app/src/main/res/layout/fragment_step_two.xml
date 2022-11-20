@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#F3E2C7"
     android:id="@+id/frame_skin_info"
-    tools:context=".ui.register.PersonalInfoFragment">
+    tools:context=".ui.register.StepOneFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"

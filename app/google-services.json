@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "403313037407",
-    "project_id": "kulitku-bangkit",
-    "storage_bucket": "kulitku-bangkit.appspot.com"
+    "project_number": "479092379809",
+    "firebase_url": "https://bustling-bot-350614-default-rtdb.firebaseio.com",
+    "project_id": "bustling-bot-350614",
+    "storage_bucket": "bustling-bot-350614.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:403313037407:android:5235356fd9126ce5e08bea",
+        "mobilesdk_app_id": "1:479092379809:android:436a6d0b70f243e962a0e0",
         "android_client_info": {
           "package_name": "com.developer.kulitku"
         }
       },
       "oauth_client": [
         {
-          "client_id": "403313037407-d7pndhd921vffvq26gp9d2blm9saa5nd.apps.googleusercontent.com",
+          "client_id": "479092379809-pus3ac29tnaeiom18vcra59rec63teeg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyC_yWnm2jNIJ8KMJ2tNmY8OPgkrU5T0CzY"
+          "current_key": "AIzaSyB7mLCq6epAhZlfMBurzpRKUI1X6kZ0hIg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "403313037407-d7pndhd921vffvq26gp9d2blm9saa5nd.apps.googleusercontent.com",
+              "client_id": "479092379809-pus3ac29tnaeiom18vcra59rec63teeg.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

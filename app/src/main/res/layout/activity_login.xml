@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FDF6F0"
-    tools:context=".ui.login.LoginFragment">
+    tools:context=".ui.login.LoginActivity">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogin"
@@ -39,7 +39,7 @@
         app:layout_constraintTop_toTopOf="@+id/btnBack" />
 
     <EditText
-        android:id="@+id/emailEditSignIn"
+        android:id="@+id/email"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="26dp"
@@ -55,7 +55,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/passEditSignIn"
+        android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="26dp"
@@ -82,7 +82,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passEditSignIn"
+        app:layout_constraintTop_toBottomOf="@+id/password"
         tools:visibility="visible" />
 
     <ImageButton
@@ -132,7 +132,7 @@
         android:text="@string/password"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditSignIn" />
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
     <TextView
         android:id="@+id/textView30"

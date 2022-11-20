@@ -7,8 +7,8 @@ import androidx.fragment.app.FragmentPagerAdapter
 class ViewPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
     override fun getItem(position: Int): Fragment =
         when (position) {
-            0 -> PersonalInfoFragment()
-            1 -> SkinInfoFragment()
+            0 -> StepOneFragment()
+            1 -> StepTwoFragment()
             else -> Fragment()
         }
 

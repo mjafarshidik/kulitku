@@ -9,7 +9,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.developer.kulitku.R
 import com.developer.kulitku.databinding.ActivityHomeBinding
+import com.developer.kulitku.ui.auth.AuthActivity
 import com.developer.kulitku.ui.scan.AddPhotoActivity
+import com.developer.kulitku.ui.splash.SliderActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -18,12 +20,11 @@ import com.google.firebase.ktx.Firebase
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
 
-    private lateinit var mAuth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        mAuth = Firebase.auth
+        supportActionBar?.hide()
 
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment)
@@ -41,6 +42,14 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        supportActionBar?.hide()
+        checkSession()
+    }
+
+    private fun checkSession() {
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
