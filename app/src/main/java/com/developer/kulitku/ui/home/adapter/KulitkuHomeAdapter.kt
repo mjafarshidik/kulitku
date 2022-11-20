@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.developer.kulitku.R
 import com.developer.kulitku.data.source.remote.kulitku.KulitkuResponse
 
-class KulitkuAdapter (private val listKulitku: ArrayList<KulitkuResponse>) : RecyclerView.Adapter<KulitkuAdapter.ListViewHolder>() {
+class KulitkuHomeAdapter (private val listKulitku: ArrayList<KulitkuResponse>) : RecyclerView.Adapter<KulitkuHomeAdapter.ListViewHolder>() {
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvTitle : TextView = itemView.findViewById(R.id.tvTitleKulitku)
         var ivKulitku : ImageView = itemView.findViewById(R.id.ivKulitku)
@@ -20,12 +20,12 @@ class KulitkuAdapter (private val listKulitku: ArrayList<KulitkuResponse>) : Rec
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): KulitkuAdapter.ListViewHolder {
+    ): KulitkuHomeAdapter.ListViewHolder {
         val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_kulitku_home, parent, false)
         return ListViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: KulitkuAdapter.ListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: KulitkuHomeAdapter.ListViewHolder, position: Int) {
         val kubaca = listKulitku[position]
         holder.tvTitle.text = kubaca.title
         Glide.with(holder.itemView.context)

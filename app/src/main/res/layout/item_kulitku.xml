@@ -48,6 +48,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
+                            android:id="@+id/ivImageResult"
                             android:layout_width="70dp"
                             android:layout_height="70dp"
                             android:src="@drawable/result_kulitku">
@@ -70,7 +71,7 @@
                         app:layout_constraintTop_toTopOf="@+id/cardView2" />
 
                     <TextView
-                        android:id="@+id/textView17"
+                        android:id="@+id/tvDateResult"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"

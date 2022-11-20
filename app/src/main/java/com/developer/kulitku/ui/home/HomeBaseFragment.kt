@@ -11,8 +11,8 @@ import com.developer.kulitku.data.source.remote.kubaca.KubacaResponse
 import com.developer.kulitku.data.source.remote.kulitku.KulitkuData
 import com.developer.kulitku.data.source.remote.kulitku.KulitkuResponse
 import com.developer.kulitku.databinding.FragmentHomeBaseBinding
-import com.developer.kulitku.ui.home.adapter.KubacaAdapter
-import com.developer.kulitku.ui.home.adapter.KulitkuAdapter
+import com.developer.kulitku.ui.home.adapter.KubacaHomeAdapter
+import com.developer.kulitku.ui.home.adapter.KulitkuHomeAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -48,8 +48,8 @@ class HomeBaseFragment : Fragment() {
         binding.apply {
             rvKubaca.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             rvKulitku.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-            val kubacaAdapter = KubacaAdapter(listKubaca)
-            val kulitkuAdapter = KulitkuAdapter(listKulitku)
+            val kubacaAdapter = KubacaHomeAdapter(listKubaca)
+            val kulitkuAdapter = KulitkuHomeAdapter(listKulitku)
             rvKubaca.adapter = kubacaAdapter
             rvKulitku.adapter = kulitkuAdapter
         }

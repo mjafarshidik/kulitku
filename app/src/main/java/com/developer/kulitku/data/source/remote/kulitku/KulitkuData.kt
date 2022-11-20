@@ -14,6 +14,17 @@ object KulitkuData {
         "Jerawat"
     )
 
+    private val date = arrayOf(
+        "18 Agustus 2022, 14:59:12",
+        "19 Agustus 2022, 07:12:51",
+        "20 Agustus 2022, 14:59:12",
+        "21 Agustus 2022, 14:59:12",
+        "22 Agustus 2022, 14:59:12",
+        "23 Agustus 2022, 14:59:12",
+        "24 Agustus 2022, 14:59:12",
+        "25 Agustus 2022, 14:59:12"
+    )
+
     private val image = intArrayOf(
         R.drawable.bisul,
         R.drawable.bisul,
@@ -31,6 +42,7 @@ object KulitkuData {
             for (position in title.indices) {
                 val hero = KulitkuResponse()
                 hero.title = title[position]
+                hero.dateTime = date[position]
                 hero.photo = image[position]
 
                 list.add(hero)

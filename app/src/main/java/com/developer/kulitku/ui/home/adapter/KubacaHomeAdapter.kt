@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.developer.kulitku.R
 import com.developer.kulitku.data.source.remote.kubaca.KubacaResponse
 
-class KubacaAdapter (private val listKubaca: ArrayList<KubacaResponse>) : RecyclerView.Adapter<KubacaAdapter.ListViewHolder>() {
+class KubacaHomeAdapter (private val listKubaca: ArrayList<KubacaResponse>) : RecyclerView.Adapter<KubacaHomeAdapter.ListViewHolder>() {
     inner class ListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvTitle : TextView = itemView.findViewById(R.id.tvTitle)
         var tvDate  : TextView = itemView.findViewById(R.id.tvDate)
