@@ -48,7 +48,7 @@ class HomeActivity : AppCompatActivity() {
     private fun checkSession() {
         val user = FirebaseAuth.getInstance().currentUser
         if (user == null) {
-            val intent = Intent(this, AuthActivity::class.java)
+            val intent = Intent(this, SliderActivity::class.java)
             startActivity(intent)
         }
     }

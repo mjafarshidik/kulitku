@@ -27,4 +27,9 @@ class AuthActivity : AppCompatActivity() {
             startActivity(Intent(this, LoginActivity::class.java))
         }
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finish()
+    }
 }

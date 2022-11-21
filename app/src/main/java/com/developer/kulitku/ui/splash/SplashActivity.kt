@@ -15,7 +15,7 @@ import com.google.firebase.ktx.Firebase
 
 class SplashActivity : AppCompatActivity() {
     private var binding: ActivitySplashBinding? = null
-    private lateinit var auth: FirebaseAuth
+//    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,30 +27,8 @@ class SplashActivity : AppCompatActivity() {
             View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         setContentView(R.layout.activity_splash)
         Handler().postDelayed({
-            startActivity(Intent(this@SplashActivity, SliderActivity::class.java))
+            startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
             finish()
         }, 2000)
-
-//        checkSession()
-        auth = Firebase.auth
     }
-
-    private fun checkSession() {
-        val user = FirebaseAuth.getInstance().currentUser
-        if (user != null) {
-            val intent = Intent(this, HomeActivity::class.java)
-            startActivity(intent)
-        }
-        val intent = Intent(this, SliderActivity::class.java)
-        startActivity(intent)
-    }
-//
-//    public override fun onStart() {
-//        super.onStart()
-//        // Check if user is signed in (non-null) and update UI accordingly.
-//        val currentUser = auth.currentUser
-//        if(currentUser != null){
-//            recreate()
-//        }
-//    }
 }

@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.viewpager2.widget.ViewPager2
 import com.developer.kulitku.R
 import com.developer.kulitku.databinding.ActivitySliderBinding
+import com.developer.kulitku.ui.auth.AuthActivity
 import com.developer.kulitku.ui.home.HomeActivity
 
 class SliderActivity : AppCompatActivity() {
@@ -58,7 +59,7 @@ class SliderActivity : AppCompatActivity() {
             }
         })
         tvSkip.setOnClickListener {
-            startActivity(Intent(this, HomeActivity::class.java))
+            startActivity(Intent(this, AuthActivity::class.java))
             finish()
         }
         tvNext.setOnClickListener {
@@ -66,7 +67,7 @@ class SliderActivity : AppCompatActivity() {
             if (position < fragmentList.lastIndex) {
                 vpIntroSlider.currentItem = position + 1
             } else {
-                startActivity(Intent(this, HomeActivity::class.java))
+                startActivity(Intent(this, AuthActivity::class.java))
                 finish()
             }
         }

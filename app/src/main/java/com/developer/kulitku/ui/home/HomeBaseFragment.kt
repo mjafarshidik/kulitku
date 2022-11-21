@@ -1,5 +1,6 @@
 package com.developer.kulitku.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,12 +14,12 @@ import com.developer.kulitku.data.source.remote.kulitku.KulitkuResponse
 import com.developer.kulitku.databinding.FragmentHomeBaseBinding
 import com.developer.kulitku.ui.home.adapter.KubacaHomeAdapter
 import com.developer.kulitku.ui.home.adapter.KulitkuHomeAdapter
+import com.developer.kulitku.ui.splash.SliderActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
 class HomeBaseFragment : Fragment() {
-    private lateinit var mAuth: FirebaseAuth
     private var _binding: FragmentHomeBaseBinding? = null
     private val binding get() = _binding!!
     private var listKubaca: ArrayList<KubacaResponse> = arrayListOf()
@@ -33,7 +34,6 @@ class HomeBaseFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mAuth = Firebase.auth
 
         binding.apply {
             vpHome.adapter = HomeBasePagerAdapter(requireActivity().supportFragmentManager)
@@ -42,6 +42,8 @@ class HomeBaseFragment : Fragment() {
             listKulitku.addAll(KulitkuData.listData)
             showRecyclerList()
         }
+
+        checkSession()
     }
 
     private fun showRecyclerList() {
@@ -52,6 +54,14 @@ class HomeBaseFragment : Fragment() {
             val kulitkuAdapter = KulitkuHomeAdapter(listKulitku)
             rvKubaca.adapter = kubacaAdapter
             rvKulitku.adapter = kulitkuAdapter
+        }
+    }
+
+    private fun checkSession() {
+        val user = FirebaseAuth.getInstance().currentUser
+        if (user == null) {
+            val intent = Intent(requireContext(), SliderActivity::class.java)
+            startActivity(intent)
         }
     }
 }
