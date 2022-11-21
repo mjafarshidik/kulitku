@@ -19,4 +19,18 @@
         android:name="com.developer.kulitku.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/homeBaseFragment"
+        android:name="com.developer.kulitku.ui.home.HomeBaseFragment"
+        android:label="HomeBaseFragment"
+        tools:layout="@layout/fragment_home_base">
+        <action
+            android:id="@+id/action_homeBaseFragment_to_kubukuFragment"
+            app:destination="@id/kubukuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kubukuFragment"
+        android:name="com.developer.kulitku.ui.kubuku.KubukuFragment"
+        android:label="fragment_kubuku"
+        tools:layout="@layout/fragment_kubuku" />
 </navigation>

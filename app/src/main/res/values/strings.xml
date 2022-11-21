@@ -93,6 +93,8 @@
     <string name="exp_name_profile">Azel</string>
     <string name="exp_email_profile">azel@gmail.com</string>
     <string name="on_development">On Development</string>
+    <string name="coming_soon">Coming Soon</string>
+    <string name="history">Riwayat Pindai Kulitmu</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>

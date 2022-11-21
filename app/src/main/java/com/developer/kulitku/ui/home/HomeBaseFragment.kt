@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.developer.kulitku.R
 import com.developer.kulitku.data.source.remote.kubaca.KubacaData
 import com.developer.kulitku.data.source.remote.kubaca.KubacaResponse
 import com.developer.kulitku.data.source.remote.kulitku.KulitkuData
@@ -43,6 +45,7 @@ class HomeBaseFragment : Fragment() {
             listKubaca.addAll(KubacaData.listData)
             listKulitku.addAll(KulitkuData.listData)
             showRecyclerList()
+            navigateToKubaca()
         }
 
         checkSession()
@@ -55,6 +58,14 @@ class HomeBaseFragment : Fragment() {
         val sdf = SimpleDateFormat("dd LLLL yyyy")
         val currentDate = sdf.format(date)
         binding.textviewDate.text = currentDate
+    }
+
+    private fun navigateToKubaca() {
+        binding.apply {
+            btnMoreKubaca.setOnClickListener {
+                Navigation.createNavigateOnClickListener(R.id.action_homeBaseFragment_to_kubukuFragment)
+            }
+        }
     }
 
     private fun showRecyclerList() {
