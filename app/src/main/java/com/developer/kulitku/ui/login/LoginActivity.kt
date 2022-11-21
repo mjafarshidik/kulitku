@@ -8,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.developer.kulitku.databinding.ActivityLoginBinding
+import com.developer.kulitku.ui.auth.AuthActivity
 import com.developer.kulitku.ui.home.HomeActivity
 import com.developer.kulitku.ui.register.RegisterActivity
 import com.developer.kulitku.ui.register.RegisterViewModel
@@ -29,6 +30,10 @@ class LoginActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         initObservable()
+
+        binding.buttonBack.setOnClickListener {
+            startActivity(Intent(this, AuthActivity::class.java))
+        }
 
         binding.btnLogin.setOnClickListener {
             val email = binding.email.text.toString()

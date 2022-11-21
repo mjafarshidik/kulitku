@@ -18,6 +18,7 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import com.developer.kulitku.databinding.ActivityAddPhotoBinding
+import com.developer.kulitku.ui.home.HomeActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.common.util.concurrent.ListenableFuture
 import id.zelory.compressor.Compressor
@@ -52,6 +53,7 @@ class AddPhotoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddPhotoBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
@@ -93,7 +95,9 @@ class AddPhotoActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        supportActionBar?.hide()
+        binding.buttonBack.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
+        }
     }
 
     private fun startCamera() {

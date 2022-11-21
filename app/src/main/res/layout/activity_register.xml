@@ -18,12 +18,12 @@
         android:textColor="#293942"
         android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
-        app:layout_constraintStart_toEndOf="@+id/btnBack"
-        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+        app:layout_constraintBottom_toBottomOf="@+id/button_Back"
+        app:layout_constraintStart_toEndOf="@+id/button_Back"
+        app:layout_constraintTop_toTopOf="@+id/button_Back" />
 
     <ImageButton
-        android:id="@+id/btnBack"
+        android:id="@+id/button_Back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

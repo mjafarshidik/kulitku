@@ -15,7 +15,7 @@
     </androidx.camera.view.PreviewView>
 
     <ImageButton
-        android:id="@+id/btnBack"
+        android:id="@+id/button_Back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

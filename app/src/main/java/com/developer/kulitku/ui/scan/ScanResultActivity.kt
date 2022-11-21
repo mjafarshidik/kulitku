@@ -1,5 +1,6 @@
 package com.developer.kulitku.ui.scan
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +13,7 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.developer.kulitku.data.source.remote.ResultState
 import com.developer.kulitku.databinding.ActivityScanResultBinding
+import com.developer.kulitku.ui.home.HomeActivity
 import id.zelory.compressor.Compressor
 import kotlinx.coroutines.launch
 import java.io.File
@@ -26,6 +28,7 @@ class ScanResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityScanResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         val extras = intent.extras
         intent.hasExtra(EXTRA_IMG)
@@ -74,9 +77,9 @@ class ScanResultActivity : AppCompatActivity() {
             }
         }
 
-        supportActionBar?.hide()
-
-
+        binding.buttonBack.setOnClickListener {
+            startActivity(Intent(this, HomeActivity::class.java))
+        }
     }
 
     companion object {

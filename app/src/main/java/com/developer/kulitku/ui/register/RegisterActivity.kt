@@ -4,10 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.developer.kulitku.databinding.ActivityRegisterBinding
+import com.developer.kulitku.ui.auth.AuthActivity
 import com.developer.kulitku.ui.home.HomeActivity
 
 
-class RegisterActivity : AppCompatActivity(){
+class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,15 +20,9 @@ class RegisterActivity : AppCompatActivity(){
         binding.apply {
             pager.adapter = ViewPagerAdapter(supportFragmentManager)
             tablayoutRegister.setupWithViewPager(binding.pager)
-            btnBack.setOnClickListener {
-                this@RegisterActivity.onBackPressed()
+            buttonBack.setOnClickListener {
+                startActivity(Intent(this@RegisterActivity, AuthActivity::class.java))
             }
         }
-    }
-
-    override fun onBackPressed() {
-        val intent = Intent(this@RegisterActivity, HomeActivity::class.java)
-        intent.putExtra("Check", 1)
-        startActivity(intent)
     }
 }
