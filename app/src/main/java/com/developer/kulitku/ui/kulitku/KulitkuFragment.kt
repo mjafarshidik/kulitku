@@ -30,19 +30,19 @@ class KulitkuFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mAuth = Firebase.auth
 
-        binding.apply {
-            rvKulitku.setHasFixedSize(true)
-            listKulitku.addAll(KulitkuData.listData)
-            showRecyclerList()
-        }
+//        binding.apply {
+//            rvKulitku.setHasFixedSize(true)
+//            listKulitku.addAll(KulitkuData.listData)
+//            showRecyclerList()
+//        }
     }
 
-    private fun showRecyclerList() {
-        binding.apply {
-            rvKulitku.layoutManager =
-                LinearLayoutManager(activity)
-            val kulitkuAdapter = KulitkuAdapter(listKulitku)
-            rvKulitku.adapter = kulitkuAdapter
-        }
-    }
+//    private fun showRecyclerList() {
+//        binding.apply {
+//            rvKulitku.layoutManager =
+//                LinearLayoutManager(activity)
+//            val kulitkuAdapter = KulitkuAdapter(listKulitku)
+//            rvKulitku.adapter = kulitkuAdapter
+//        }
+//    }
 }

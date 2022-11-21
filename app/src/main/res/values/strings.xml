@@ -92,6 +92,7 @@
     <string name="options">Pengaturan</string>
     <string name="exp_name_profile">Azel</string>
     <string name="exp_email_profile">azel@gmail.com</string>
+    <string name="on_development">On Development</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>

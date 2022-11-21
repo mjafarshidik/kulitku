@@ -63,7 +63,6 @@ class ScanResultActivity : AppCompatActivity() {
                     modalBottomSheet.show(supportFragmentManager, ModalBottomSheet.TAG)
                     bundle.putString("message", labelScan)
                     modalBottomSheet.arguments = bundle
-
                     Log.d("EKO", labelScan)
                     binding.progressBar.visibility = View.GONE
                 }

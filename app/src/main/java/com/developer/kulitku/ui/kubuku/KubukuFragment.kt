@@ -32,18 +32,18 @@ class KubukuFragment : Fragment() {
         mAuth = Firebase.auth
 
         binding.apply {
-            rvKubuku.setHasFixedSize(true)
-            listKubuku.addAll(KubukuData.listData)
-            showRecyclerList()
+//            rvKubuku.setHasFixedSize(true)
+//            listKubuku.addAll(KubukuData.listData)
+//            showRecyclerList()
         }
     }
 
-    private fun showRecyclerList() {
-        binding.apply {
-            rvKubuku.layoutManager =
-                LinearLayoutManager(activity)
-            val kubukuAdapter = KubukuAdapter(listKubuku)
-            rvKubuku.adapter = kubukuAdapter
-        }
-    }
+//    private fun showRecyclerList() {
+//        binding.apply {
+//            rvKubuku.layoutManager =
+//                LinearLayoutManager(activity)
+//            val kubukuAdapter = KubukuAdapter(listKubuku)
+//            rvKubuku.adapter = kubukuAdapter
+//        }
+//    }
 }
