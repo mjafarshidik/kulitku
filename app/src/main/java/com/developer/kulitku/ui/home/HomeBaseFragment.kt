@@ -46,6 +46,7 @@ class HomeBaseFragment : Fragment() {
             listKulitku.addAll(KulitkuData.listData)
             showRecyclerList()
             navigateToKubaca()
+            navigateToKutulis()
         }
 
         checkSession()
@@ -58,6 +59,14 @@ class HomeBaseFragment : Fragment() {
         val sdf = SimpleDateFormat("dd LLLL yyyy")
         val currentDate = sdf.format(date)
         binding.textviewDate.text = currentDate
+    }
+
+    private fun navigateToKutulis() {
+        binding.apply {
+            btnKulitkuMore.setOnClickListener {
+                Navigation.createNavigateOnClickListener(R.id.action_homeBaseFragment_to_kulitkuFragment)
+            }
+        }
     }
 
     private fun navigateToKubaca() {

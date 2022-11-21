@@ -27,10 +27,18 @@
         <action
             android:id="@+id/action_homeBaseFragment_to_kubukuFragment"
             app:destination="@id/kubukuFragment" />
+        <action
+            android:id="@+id/action_homeBaseFragment_to_kulitkuFragment"
+            app:destination="@id/kulitkuFragment" />
     </fragment>
     <fragment
         android:id="@+id/kubukuFragment"
         android:name="com.developer.kulitku.ui.kubuku.KubukuFragment"
         android:label="fragment_kubuku"
         tools:layout="@layout/fragment_kubuku" />
+    <fragment
+        android:id="@+id/kulitkuFragment"
+        android:name="com.developer.kulitku.ui.kulitku.KulitkuFragment"
+        android:label="fragment_kulitku"
+        tools:layout="@layout/fragment_kulitku" />
 </navigation>
