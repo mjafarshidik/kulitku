@@ -47,6 +47,7 @@ class HomeBaseFragment : Fragment() {
             showRecyclerList()
             navigateToKubaca()
             navigateToKutulis()
+            notification()
         }
 
         checkSession()
@@ -59,6 +60,14 @@ class HomeBaseFragment : Fragment() {
         val sdf = SimpleDateFormat("dd LLLL yyyy")
         val currentDate = sdf.format(date)
         binding.textviewDate.text = currentDate
+    }
+
+    private fun notification() {
+        binding.apply {
+            btnNotification.setOnClickListener {
+
+            }
+        }
     }
 
     private fun navigateToKutulis() {
