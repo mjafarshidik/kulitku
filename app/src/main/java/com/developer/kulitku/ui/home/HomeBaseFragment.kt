@@ -18,6 +18,8 @@ import com.developer.kulitku.ui.splash.SliderActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HomeBaseFragment : Fragment() {
     private var _binding: FragmentHomeBaseBinding? = null
@@ -48,6 +50,11 @@ class HomeBaseFragment : Fragment() {
         val user = Firebase.auth.currentUser
         val username = user?.email
         binding.textviewUsername.text = username?.replace("@gmail.com", "")
+
+        val date = Calendar.getInstance().time
+        val sdf = SimpleDateFormat("dd LLLL yyyy")
+        val currentDate = sdf.format(date)
+        binding.textviewDate.text = currentDate
     }
 
     private fun showRecyclerList() {
