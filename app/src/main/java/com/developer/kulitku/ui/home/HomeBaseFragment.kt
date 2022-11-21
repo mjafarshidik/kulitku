@@ -44,6 +44,10 @@ class HomeBaseFragment : Fragment() {
         }
 
         checkSession()
+
+        val user = Firebase.auth.currentUser
+        val username = user?.email
+        binding.textviewUsername.text = username?.replace("@gmail.com", "")
     }
 
     private fun showRecyclerList() {
