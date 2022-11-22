@@ -95,6 +95,9 @@
     <string name="on_development">On Development</string>
     <string name="coming_soon">Coming Soon</string>
     <string name="history">Riwayat Pindai Kulitmu</string>
+    <string name="notification">Notification</string>
+    <string name="close">Tutup</string>
+    <string name="desc_notification">Tidak ada Notifikasi masuk</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>

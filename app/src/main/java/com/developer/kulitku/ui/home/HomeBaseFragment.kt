@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,6 +48,8 @@ class HomeBaseFragment : Fragment() {
             listKulitku.addAll(KulitkuData.listData)
             showRecyclerList()
             navigateToKubaca()
+            navigateToKutulis()
+            notification()
         }
 
         checkSession()
@@ -58,6 +62,30 @@ class HomeBaseFragment : Fragment() {
         val sdf = SimpleDateFormat("dd LLLL yyyy")
         val currentDate = sdf.format(date)
         binding.textviewDate.text = currentDate
+    }
+
+    private fun notification() {
+        binding.apply {
+            btnNotification.setOnClickListener {
+                val builder = AlertDialog.Builder(requireActivity(), R.style.CustomAlertDialog).create()
+                val view = layoutInflater.inflate(R.layout.notification_dialog, null)
+                val button = view.findViewById<Button>(R.id.btnClose)
+                builder.setView(view)
+                button.setOnClickListener {
+                    builder.dismiss()
+                }
+                builder.setCanceledOnTouchOutside(false)
+                builder.show()
+            }
+        }
+    }
+
+    private fun navigateToKutulis() {
+        binding.apply {
+            btnKulitkuMore.setOnClickListener {
+                Navigation.createNavigateOnClickListener(R.id.action_homeBaseFragment_to_kulitkuFragment)
+            }
+        }
     }
 
     private fun navigateToKubaca() {
