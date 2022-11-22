@@ -182,7 +182,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edtName" />
 
-        <Spinner
+        <EditText
             android:id="@+id/spGender"
             android:layout_width="0dp"
             android:layout_height="48dp"
@@ -192,7 +192,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
-        <Spinner
+        <EditText
             android:id="@+id/spSkinType"
             android:layout_width="0dp"
             android:layout_height="48dp"
