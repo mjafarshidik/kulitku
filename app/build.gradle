@@ -17,6 +17,14 @@ android {
         versionCode 1
         versionName "1.0"
 
+        android.applicationVariants.all { variant ->
+            variant.outputs.all {
+                def appName = "SkinPals"
+                def date = new Date()
+                def formattedDate = date.format('MMM-dd-yyyy')
+                outputFileName = appName + formattedDate + "-${variant.versionName}-${variant.versionCode}.apk"
+            }
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
