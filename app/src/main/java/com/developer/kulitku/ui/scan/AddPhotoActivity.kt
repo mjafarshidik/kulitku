@@ -1,8 +1,6 @@
 package com.developer.kulitku.ui.scan
 
 import android.content.Intent
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
@@ -17,14 +15,15 @@ import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import com.bumptech.glide.Glide
 import com.developer.kulitku.databinding.ActivityAddPhotoBinding
 import com.developer.kulitku.ui.home.HomeActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.common.util.concurrent.ListenableFuture
-import id.zelory.compressor.Compressor
 import java.io.File
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+
 
 class AddPhotoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddPhotoBinding
@@ -68,7 +67,10 @@ class AddPhotoActivity : AppCompatActivity() {
 
         // Save the image in the above file
         outputFileOptions = ImageCapture.OutputFileOptions.Builder(file).build()
+        initView()
+    }
 
+    private fun initView() {
         binding.buttonOpenGallery.setOnClickListener {
             startActivity(Intent(this, GalleryActivity::class.java))
         }
@@ -77,6 +79,13 @@ class AddPhotoActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 animateFlash()
             }
+
+            binding.preview.visibility = View.GONE
+            binding.imageviewPreview.visibility = View.VISIBLE
+
+            Glide.with(this)
+                .load(imageURI)
+                .into(binding.imageviewPreview)
 
             binding.buttonSend.visibility = View.VISIBLE
         }
