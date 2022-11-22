@@ -5,6 +5,8 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -79,15 +81,6 @@ class AddPhotoActivity : AppCompatActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 animateFlash()
             }
-
-            binding.preview.visibility = View.GONE
-            binding.imageviewPreview.visibility = View.VISIBLE
-
-            Glide.with(this)
-                .load(imageURI)
-                .into(binding.imageviewPreview)
-
-            binding.buttonSend.visibility = View.VISIBLE
         }
 
         binding.buttonSwitchCamera.setOnClickListener {
@@ -141,6 +134,18 @@ class AddPhotoActivity : AppCompatActivity() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     Log.i(TAG, "The image has been saved in ${file.toUri()}")
+
+                    val handler = Handler(Looper.getMainLooper())
+                    handler.post {
+                        binding.imageviewPreview.visibility = View.VISIBLE
+                        binding.preview.visibility = View.GONE
+
+                        Glide.with(this@AddPhotoActivity)
+                            .load(imageURI)
+                            .into(binding.imageviewPreview)
+
+                        binding.buttonSend.visibility = View.VISIBLE
+                    }
                 }
 
                 override fun onError(exception: ImageCaptureException) {
