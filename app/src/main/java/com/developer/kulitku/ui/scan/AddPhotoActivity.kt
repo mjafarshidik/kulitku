@@ -69,6 +69,9 @@ class AddPhotoActivity : AppCompatActivity() {
         // Save the image in the above file
         outputFileOptions = ImageCapture.OutputFileOptions.Builder(file).build()
 
+        binding.buttonOpenGallery.setOnClickListener {
+            startActivity(Intent(this, GalleryActivity::class.java))
+        }
         binding.buttonCaptureImage.setOnClickListener {
             takePhoto()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -151,14 +154,6 @@ class AddPhotoActivity : AppCompatActivity() {
                 binding.root.foreground = null
             }, 50)
         }, 100)
-    }
-
-    fun ImageProxy.convertImageProxyToBitmap(): Bitmap {
-        val buffer = planes[0].buffer
-        buffer.rewind()
-        val bytes = ByteArray(buffer.capacity())
-        buffer.get(bytes)
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
     }
 
     companion object {
