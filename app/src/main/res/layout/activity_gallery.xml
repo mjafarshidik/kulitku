@@ -41,6 +41,7 @@
         android:layout_width="314dp"
         android:layout_height="526dp"
         android:layout_marginStart="23dp"
+        android:scaleType="fitXY"
         android:layout_marginTop="38dp"
         android:layout_marginEnd="23dp"
         app:layout_constraintEnd_toEndOf="parent"

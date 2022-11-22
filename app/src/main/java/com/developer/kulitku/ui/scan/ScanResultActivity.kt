@@ -46,7 +46,7 @@ class ScanResultActivity : AppCompatActivity() {
         Glide.with(this)
             .load(imgUri)
             .transform(RoundedCorners(32))
-            .apply(RequestOptions.overrideOf(314, 600))
+            .apply(RequestOptions.overrideOf(314, 526))
             .into(binding.ivPhotoResult)
 
         viewModel.labelState.observe(this) {
