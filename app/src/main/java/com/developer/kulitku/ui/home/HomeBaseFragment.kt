@@ -114,4 +114,11 @@ class HomeBaseFragment : Fragment() {
             startActivity(intent)
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        binding.apply {
+            vpHome.adapter = HomeBasePagerAdapter(requireActivity().supportFragmentManager)
+        }
+    }
 }
