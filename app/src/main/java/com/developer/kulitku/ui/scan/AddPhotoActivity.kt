@@ -1,14 +1,18 @@
 package com.developer.kulitku.ui.scan
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
+import android.webkit.MimeTypeMap
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -16,13 +20,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.core.net.toFile
 import androidx.core.net.toUri
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.developer.kulitku.databinding.ActivityAddPhotoBinding
 import com.developer.kulitku.ui.home.HomeActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.common.util.concurrent.ListenableFuture
-import java.io.File
+import id.zelory.compressor.Compressor
+import kotlinx.coroutines.launch
+import java.io.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -37,6 +45,7 @@ class AddPhotoActivity : AppCompatActivity() {
     private lateinit var imageURI: String
     private lateinit var outputFileOptions: ImageCapture.OutputFileOptions
     private var imageCapture: ImageCapture? = null
+    private val REQUEST_CODE = 100
     private val cameraPermissionResult =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { permissionGranted ->
             if (permissionGranted) {
@@ -74,7 +83,7 @@ class AddPhotoActivity : AppCompatActivity() {
 
     private fun initView() {
         binding.buttonOpenGallery.setOnClickListener {
-            startActivity(Intent(this, GalleryActivity::class.java))
+            openGalleryForImage()
         }
         binding.buttonCaptureImage.setOnClickListener {
             takePhoto()
@@ -168,6 +177,62 @@ class AddPhotoActivity : AppCompatActivity() {
                 binding.root.foreground = null
             }, 50)
         }, 100)
+    }
+
+    private fun openGalleryForImage() {
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        startActivityForResult(intent, REQUEST_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
+            val image = fileFromContentUri(this, data?.data!!).toUri()
+
+            val intent = Intent(this, ScanResultActivity::class.java)
+            intent.putExtra(ScanResultActivity.EXTRA_IMG, image.toString())
+            startActivity(intent)
+        }
+    }
+
+    private fun fileFromContentUri(context: Context, contentUri: Uri): File {
+        // Preparing Temp file name
+        val fileExtension = getFileExtension(context, contentUri)
+        val fileName = "temp_file" + if (fileExtension != null) ".$fileExtension" else ""
+
+        // Creating Temp file
+        val tempFile = File(context.cacheDir, fileName)
+        tempFile.createNewFile()
+
+        try {
+            val oStream = FileOutputStream(tempFile)
+            val inputStream = context.contentResolver.openInputStream(contentUri)
+
+            inputStream?.let {
+                copy(inputStream, oStream)
+            }
+
+            oStream.flush()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        return tempFile
+    }
+
+    private fun getFileExtension(context: Context, uri: Uri): String? {
+        val fileType: String? = context.contentResolver.getType(uri)
+        return MimeTypeMap.getSingleton().getExtensionFromMimeType(fileType)
+    }
+
+    @Throws(IOException::class)
+    private fun copy(source: InputStream, target: OutputStream) {
+        val buf = ByteArray(8192)
+        var length: Int
+        while (source.read(buf).also { length = it } > 0) {
+            target.write(buf, 0, length)
+        }
     }
 
     companion object {
