@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
         android:layout_marginBottom="8dp"
-        android:fontFamily="@font/montserrat_subrayada"
+        android:fontFamily="@font/inter_medium"
         android:text="@string/desc_diagnosa"
         app:layout_constraintEnd_toEndOf="@id/ic_scan_result"
         app:layout_constraintStart_toStartOf="@+id/ic_scan_result"
