@@ -98,6 +98,10 @@
     <string name="notification">Notification</string>
     <string name="close">Tutup</string>
     <string name="desc_notification">Tidak ada Notifikasi masuk</string>
+    <string name="rekomendasi_kandungan">Rekomendasi Kandungan</string>
+    <string name="skin_suggestions">Saran Kulitku</string>
+    <string name="text_suggest_value_exp">Memakai skincare berbahan dasar snail untuk recovery</string>
+    <string name="tidur_teratur">Tidur teratur</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>
