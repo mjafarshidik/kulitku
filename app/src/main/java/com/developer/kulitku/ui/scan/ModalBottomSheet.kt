@@ -5,30 +5,38 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.developer.kulitku.databinding.BottomSheetDialogBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.developer.kulitku.data.source.remote.recommendationingredient.RecommendationIngredientResponse
+import com.developer.kulitku.databinding.BottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ModalBottomSheet : BottomSheetDialogFragment() {
-    private lateinit var binding: BottomSheetDialogBinding
+    private lateinit var binding: BottomSheetBinding
+    private lateinit var adapter: RecommendationAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = BottomSheetDialogBinding.inflate(inflater, container, false)
+        binding = BottomSheetBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val label = arguments?.getString("message")
-        binding.textviewLabelScan.text = label
-        Log.d("EKA", label.toString())
+    }
+
+    private fun showRecyclerList() {
+        binding.apply {
+            rvRecommend.layoutManager =
+                LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
+            rvRecommend.adapter = adapter
+        }
     }
 
     companion object {
         const val TAG = "ModalBottomSheet"
-
     }
 }

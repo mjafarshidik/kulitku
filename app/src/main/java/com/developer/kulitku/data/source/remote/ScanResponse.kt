@@ -33,8 +33,8 @@ data class ScanResponse(
 	val result: Result? = null,
 
 	@field:SerializedName("saran")
-	val saran: List<String?>? = null,
+	val saran: List<String>,
 
 	@field:SerializedName("kandungan")
-	val kandungan: List<String?>? = null
+	val kandungan: List<String>
 ): Parcelable
