@@ -4,18 +4,6 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
-//data class ScanResultResponse(
-//
-//	@field:SerializedName("code")
-//	val code: Int? = null,
-//
-//	@field:SerializedName("data")
-//	val data: Data? = null,
-//
-//	@field:SerializedName("message")
-//	val message: String? = null
-//)
-
 @Parcelize
 data class Result(
 
@@ -33,8 +21,18 @@ data class ScanResponse(
 	val result: Result? = null,
 
 	@field:SerializedName("saran")
-	val saran: List<String>,
+	val saran: List<SuggestionResponse>,
 
 	@field:SerializedName("kandungan")
-	val kandungan: List<String>
+	val kandungan: List<RecommendationIngredientResponse>
+): Parcelable
+
+@Parcelize
+data class RecommendationIngredientResponse(
+	var title: String = "",
+): Parcelable
+
+@Parcelize
+data class SuggestionResponse(
+	var title: String = "",
 ): Parcelable

@@ -1,12 +1,10 @@
 package com.developer.kulitku.ui.scan
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.developer.kulitku.data.source.remote.recommendationingredient.RecommendationIngredientResponse
 import com.developer.kulitku.databinding.BottomSheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 

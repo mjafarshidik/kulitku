@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.developer.kulitku.data.source.remote.RecommendationIngredientResponse
 import com.developer.kulitku.data.source.remote.ResultState
 import com.developer.kulitku.data.source.remote.ScanResponse
 import com.developer.kulitku.network.ApiConfig
@@ -21,6 +22,9 @@ import java.io.FileOutputStream
 class ScanViewModel() : ViewModel() {
     private val _labelState = MutableLiveData<ResultState<ScanResponse>>()
     val labelState : LiveData<ResultState<ScanResponse>> = _labelState
+
+    private val _recommendationState = MutableLiveData<ResultState<List<RecommendationIngredientResponse>>>()
+    val recommendationState : LiveData<ResultState<List<RecommendationIngredientResponse>>> = _recommendationState
 
     fun uploadImage(file: File) {
         _labelState.value = ResultState.Loading
@@ -41,6 +45,7 @@ class ScanViewModel() : ViewModel() {
                 val data = register.data
                 if (data != null) {
                     _labelState.postValue(ResultState.Success(data))
+                    _recommendationState.postValue(ResultState.Success(data.kandungan))
                 }
             } catch (e: Exception) {
                 _labelState.postValue(ResultState.Failure(e))
