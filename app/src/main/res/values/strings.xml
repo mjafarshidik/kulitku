@@ -102,6 +102,10 @@
     <string name="skin_suggestions">Saran Kulitku</string>
     <string name="text_suggest_value_exp">Memakai skincare berbahan dasar snail untuk recovery</string>
     <string name="tidur_teratur">Tidur teratur</string>
+    <string name="reset_npassword">Reset \nPassword</string>
+    <string name="desc_reset_password">Please enter your email address to \nrequest a password reset.</string>
+    <string name="email_required">Email*</string>
+    <string name="kirim">Kirim</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>
