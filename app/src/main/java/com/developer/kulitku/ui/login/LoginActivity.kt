@@ -6,12 +6,11 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
 import com.developer.kulitku.databinding.ActivityLoginBinding
 import com.developer.kulitku.ui.auth.AuthActivity
 import com.developer.kulitku.ui.home.HomeActivity
 import com.developer.kulitku.ui.register.RegisterActivity
-import com.developer.kulitku.ui.register.RegisterViewModel
+import com.developer.kulitku.ui.reset_password.ResetPasswordActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -48,6 +47,10 @@ class LoginActivity : AppCompatActivity() {
 
         binding.textviewSignup.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
+        }
+
+        binding.forgotPassword.setOnClickListener {
+            startActivity(Intent(this, ResetPasswordActivity::class.java))
         }
     }
 
