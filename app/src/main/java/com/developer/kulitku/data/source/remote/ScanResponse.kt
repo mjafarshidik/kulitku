@@ -29,10 +29,10 @@ data class ScanResponse(
 
 @Parcelize
 data class RecommendationIngredientResponse(
-	var title: String = "",
+	var name: String = "",
 ): Parcelable
 
 @Parcelize
 data class SuggestionResponse(
-	var title: String = "",
+	var name: String = "",
 ): Parcelable

@@ -39,7 +39,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.scan.ScanResultActivity"
+            android:name=".ui.scan.result.ScanResultActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

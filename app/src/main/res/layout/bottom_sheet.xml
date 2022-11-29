@@ -86,7 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textview_label_scan" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textview_title_recommend"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
@@ -107,11 +107,11 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textview_title_recommend"
         tools:listitem="@layout/item_recommend_content" />
 
     <View
-        android:id="@+id/view1"
+        android:id="@+id/divider_bottom"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginStart="20dp"
@@ -123,7 +123,7 @@
         app:layout_constraintTop_toBottomOf="@+id/rvRecommend" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textview_title_suggest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="14dp"
@@ -131,7 +131,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view1" />
+        app:layout_constraintTop_toBottomOf="@+id/divider_bottom" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvDo"
@@ -145,7 +145,7 @@
         android:backgroundTint="@color/colorSeashell"
         app:layout_constraintStart_toStartOf="parent"
         android:outlineAmbientShadowColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/textview_title_suggest"
         tools:targetApi="p">
 
         <androidx.constraintlayout.widget.ConstraintLayout

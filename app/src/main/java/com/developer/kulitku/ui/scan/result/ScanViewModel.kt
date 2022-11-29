@@ -1,4 +1,4 @@
-package com.developer.kulitku.ui.scan
+package com.developer.kulitku.ui.scan.result
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.developer.kulitku.data.source.remote.RecommendationIngredientResponse
 import com.developer.kulitku.data.source.remote.ResultState
 import com.developer.kulitku.data.source.remote.ScanResponse
+import com.developer.kulitku.data.source.remote.SuggestionResponse
 import com.developer.kulitku.network.ApiConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -19,12 +20,18 @@ import java.io.File
 import java.io.FileOutputStream
 
 
-class ScanViewModel() : ViewModel() {
+class ScanViewModel : ViewModel() {
     private val _labelState = MutableLiveData<ResultState<ScanResponse>>()
-    val labelState : LiveData<ResultState<ScanResponse>> = _labelState
+    val labelState: LiveData<ResultState<ScanResponse>> = _labelState
 
-    private val _recommendationState = MutableLiveData<ResultState<List<RecommendationIngredientResponse>>>()
-    val recommendationState : LiveData<ResultState<List<RecommendationIngredientResponse>>> = _recommendationState
+    private val _recommendationState =
+        MutableLiveData<ResultState<List<RecommendationIngredientResponse>>>()
+    val recommendationState: LiveData<ResultState<List<RecommendationIngredientResponse>>> =
+        _recommendationState
+
+    private val _suggestionState = MutableLiveData<ResultState<List<SuggestionResponse>>>()
+    val suggestionState: LiveData<ResultState<List<SuggestionResponse>>> =
+        _suggestionState
 
     fun uploadImage(file: File) {
         _labelState.value = ResultState.Loading
@@ -46,6 +53,7 @@ class ScanViewModel() : ViewModel() {
                 if (data != null) {
                     _labelState.postValue(ResultState.Success(data))
                     _recommendationState.postValue(ResultState.Success(data.kandungan))
+                    _suggestionState.postValue(ResultState.Success(data.saran))
                 }
             } catch (e: Exception) {
                 _labelState.postValue(ResultState.Failure(e))

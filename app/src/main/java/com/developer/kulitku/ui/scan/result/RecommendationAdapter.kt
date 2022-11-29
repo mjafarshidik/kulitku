@@ -1,4 +1,4 @@
-package com.developer.kulitku.ui.scan
+package com.developer.kulitku.ui.scan.result
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -20,7 +20,7 @@ class RecommendationAdapter : RecyclerView.Adapter<RecommendationAdapter.ListVie
         RecyclerView.ViewHolder(binding.root) {
         fun bind(data: RecommendationIngredientResponse) {
             with(binding) {
-                textviewIngredientName.text = data.title
+                textviewIngredientName.text = data.name
             }
         }
     }

@@ -106,6 +106,7 @@
     <string name="desc_reset_password">Please enter your email address to \nrequest a password reset.</string>
     <string name="email_required">Email*</string>
     <string name="kirim">Kirim</string>
+    <string name="ingredients">Ingredients</string>
     <string-array name="gender">
         <item>Pria</item>
         <item>Wanita</item>

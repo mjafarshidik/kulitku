@@ -20,16 +20,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
-import androidx.core.net.toFile
 import androidx.core.net.toUri
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.developer.kulitku.databinding.ActivityAddPhotoBinding
 import com.developer.kulitku.ui.home.HomeActivity
+import com.developer.kulitku.ui.scan.result.ScanResultActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.common.util.concurrent.ListenableFuture
-import id.zelory.compressor.Compressor
-import kotlinx.coroutines.launch
 import java.io.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors

@@ -1,6 +1,5 @@
-package com.developer.kulitku.ui.scan
+package com.developer.kulitku.ui.scan.result
 
-import android.accounts.AccountManager.get
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -8,7 +7,6 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,10 +15,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.developer.kulitku.R
-import com.developer.kulitku.data.source.remote.RecommendationIngredientResponse
 import com.developer.kulitku.data.source.remote.ResultState
-import com.developer.kulitku.data.source.remote.kubuku.KubukuData
-import com.developer.kulitku.data.source.remote.kubuku.KubukuResponse
 import com.developer.kulitku.databinding.ActivityScanResultBinding
 import com.developer.kulitku.ui.home.HomeActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -33,10 +28,12 @@ class ScanResultActivity : AppCompatActivity() {
     private lateinit var binding: ActivityScanResultBinding
     private lateinit var viewModel: ScanViewModel
     private lateinit var labelScan: String
-    private lateinit var adapter: RecommendationAdapter
+    private lateinit var recommendationAdapter: RecommendationAdapter
+    private lateinit var suggestionAdapter: SuggestionAdapter
     private lateinit var textLabel: TextView
     private lateinit var progressBar: ProgressBar
-    private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerViewRecommendation: RecyclerView
+    private lateinit var recyclerViewSuggestion: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +49,8 @@ class ScanResultActivity : AppCompatActivity() {
         val file = File(imgUri?.toUri()?.path)
         viewModel = ScanViewModel()
 
-        adapter = RecommendationAdapter()
+        recommendationAdapter = RecommendationAdapter()
+        suggestionAdapter = SuggestionAdapter()
 
         lifecycleScope.launch {
             val compressedImageFile = Compressor.compress(this@ScanResultActivity, file)
@@ -67,7 +65,8 @@ class ScanResultActivity : AppCompatActivity() {
 
         textLabel = findViewById(R.id.textview_label_scan)
         progressBar = findViewById(R.id.progress_bar_bottom_sheet)
-        recyclerView = findViewById(R.id.rvRecommend)
+        recyclerViewRecommendation = findViewById(R.id.rvRecommend)
+        recyclerViewSuggestion = findViewById(R.id.rvDo)
 
         bottomSheetBehavior.setBottomSheetCallback(object :
             BottomSheetBehavior.BottomSheetCallback() {
@@ -103,9 +102,27 @@ class ScanResultActivity : AppCompatActivity() {
                                 is ResultState.Loading -> {
                                 }
                                 is ResultState.Success -> {
-                                    adapter.setRecommendation(it.value)
-                                    showRecyclerList()
+                                    showRecyclerRecommendation()
+                                    recommendationAdapter.setRecommendation(it.value)
                                     progressBar.visibility = View.GONE
+                                }
+                                is ResultState.Failure -> {
+                                    Toast.makeText(
+                                        this@ScanResultActivity,
+                                        it.throwable.message,
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+                            }
+                        }
+
+                        viewModel.suggestionState.observe(this@ScanResultActivity) {
+                            when (it) {
+                                is ResultState.Loading -> {
+                                }
+                                is ResultState.Success ->  {
+                                    showRecyclerSuggestion()
+                                    suggestionAdapter.setSuggestion(it.value)
                                 }
                                 is ResultState.Failure -> {
                                     Toast.makeText(
@@ -135,10 +152,19 @@ class ScanResultActivity : AppCompatActivity() {
         }
     }
 
-    private fun showRecyclerList() {
-        recyclerView.layoutManager =
+    private fun showRecyclerRecommendation() {
+        recyclerViewRecommendation.layoutManager =
             LinearLayoutManager(this@ScanResultActivity, LinearLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = adapter
+        recyclerViewRecommendation.setHasFixedSize(true)
+        recyclerViewRecommendation.adapter = recommendationAdapter
+
+    }
+
+    private fun showRecyclerSuggestion() {
+        recyclerViewSuggestion.layoutManager =
+            LinearLayoutManager(this@ScanResultActivity, LinearLayoutManager.VERTICAL, false)
+        recyclerViewSuggestion.setHasFixedSize(true)
+        recyclerViewSuggestion.adapter = suggestionAdapter
 
     }
 
