@@ -19,7 +19,7 @@
     <string name="forgot_password">Lupa password?</string>
     <string name="do_not_have_account">Belum punya akun?</string>
     <string name="sign_up_here">Daftar Disini</string>
-    <string name="login">Login</string>
+    <string name="signIn">Sign In</string>
     <string name="asterisk">*</string>
     <string name="enter">Masuk</string>
     <string name="enter_email">Masukkan email</string>

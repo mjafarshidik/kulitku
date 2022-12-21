@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FDF6F0"
-    tools:context=".ui.auth.AuthFragment">
+    tools:context=".ui.auth.AuthActivity">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnSignUp"
@@ -30,7 +30,7 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/button_shape_caper"
-        android:text="@string/login"
+        android:text="@string/signIn"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

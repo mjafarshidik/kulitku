@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:fontFamily="@font/inter_bold"
-        android:text="@string/login"
+        android:text="@string/signIn"
         android:textColor="#293942"
         android:textSize="28sp"
         android:textStyle="bold"
