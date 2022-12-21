@@ -44,27 +44,27 @@ class ProfileFragment : Fragment() {
         mDatabaseReference = mFirebaseInstance.getReference("kulitku")
 
         if (uid.isNotEmpty()) {
-            getUserData()
+//            getUserData()
         }
 
     }
 
-    private fun getUserData() {
-        binding.apply {
-            mDatabaseReference.child(uid).addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val kulitku = snapshot.getValue(SignUpBody::class.java)
-                    edtName.setText(kulitku?.nama.toString())
-                    spGender.setText(kulitku?.jenis_kelamin.toString())
-                    spSkinType.setText(kulitku?.jenis_kulit.toString())
-                    edtBirthDate.setText(kulitku?.tanggal_lahir.toString())
-                    edtEmail.setText(kulitku?.email.toString())
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                    Log.d("Data", error.message)
-                }
-            })
-        }
-    }
+//    private fun getUserData() {
+//        binding.apply {
+//            mDatabaseReference.child(uid).addValueEventListener(object : ValueEventListener {
+//                override fun onDataChange(snapshot: DataSnapshot) {
+//                    val kulitku = snapshot.getValue(SignUpBody::class.java)
+//                    edtName.setText(kulitku?.nama.toString())
+//                    spGender.setText(kulitku?.jenis_kelamin.toString())
+//                    spSkinType.setText(kulitku?.jenis_kulit.toString())
+//                    edtBirthDate.setText(kulitku?.tanggal_lahir.toString())
+//                    edtEmail.setText(kulitku?.email.toString())
+//                }
+//
+//                override fun onCancelled(error: DatabaseError) {
+//                    Log.d("Data", error.message)
+//                }
+//            })
+//        }
+//    }
 }

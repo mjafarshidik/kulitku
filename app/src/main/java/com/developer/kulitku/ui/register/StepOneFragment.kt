@@ -1,6 +1,5 @@
 package com.developer.kulitku.ui.register
 
-import android.content.ContentValues
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -12,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.developer.kulitku.R
+import com.developer.kulitku.data.source.remote.ResultState
 import com.developer.kulitku.databinding.FragmentStepOneBinding
 import com.developer.kulitku.ui.home.HomeActivity
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -23,7 +23,7 @@ class StepOneFragment : Fragment() {
     private val binding get() = _binding
     private val viewModel: RegisterViewModel by viewModels()
 
-    private var listGender = arrayOf("Jenis Kelamin", "Pria", "Wanita")
+    private var listJenisKelamin = arrayOf("Jenis Kelamin", "Pria", "Wanita")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,34 +41,38 @@ class StepOneFragment : Fragment() {
         initObservable()
         binding?.apply {
             buttonNext.setOnClickListener {
-                val name = edittextName.text.toString()
+                val nama = edittextName.text.toString()
                 val email = edittextEmail.text.toString()
-                val password = edittextPassword.text.toString()
-                val birthdate = edittextBirthdate.text.toString()
+                val pass = edittextPassword.text.toString()
+                val tanggalLahir = edittextBirthdate.text.toString()
 
                 val bundle = Bundle()
-                bundle.putString(StepTwoFragment.EXTRA_NAME, name)
+                bundle.putString(StepTwoFragment.EXTRA_NAME, nama)
                 bundle.putString(StepTwoFragment.EXTRA_EMAIL, email)
-                bundle.putString(StepTwoFragment.EXTRA_BIRTHDATE, birthdate)
-                bundle.putString(StepTwoFragment.EXTRA_PASSWORD, password)
+                bundle.putString(StepTwoFragment.EXTRA_BIRTHDATE, tanggalLahir)
+                bundle.putString(StepTwoFragment.EXTRA_PASSWORD, pass)
 
                 val fragment = StepTwoFragment()
                 fragment.arguments = bundle
-                fragmentManager?.beginTransaction()?.replace(R.id.frame_personal_info, fragment)?.commit()
+                fragmentManager?.beginTransaction()?.replace(R.id.frame_personal_info, fragment)
+                    ?.commit()
             }
         }
 
         binding?.buttonNext?.setOnClickListener {
+            val nama = binding?.edittextName?.text.toString().trim()
             val email = binding?.edittextEmail?.text.toString().trim()
+            val jenisKelamin = binding?.spinnerGender.toString().trim()
+            val tanggalLahir = binding?.edittextBirthdate?.text.toString().trim()
             val password = binding?.edittextPassword?.text.toString().trim()
-            viewModel.register(email, password)
-            Toast.makeText(requireContext(), "Register Success", Toast.LENGTH_SHORT).show()
+
+            viewModel.signUp(nama, email, "L", "skin", "test", tanggalLahir, password)
         }
     }
 
     private fun setupSpinner() {
         val spinnerStatus =
-            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listGender)
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, listJenisKelamin)
         spinnerStatus.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding?.spinnerGender?.adapter = spinnerStatus
     }
@@ -96,14 +100,31 @@ class StepOneFragment : Fragment() {
         }
     }
 
-    private fun initObservable(){
-        viewModel.registerStatus.observe(requireActivity()) { success ->
-            if (success == true) {
-                val intent = Intent(requireContext(), HomeActivity::class.java)
-                startActivity(intent)
-            } else {
-                Toast.makeText(requireContext(), "Register failed.", Toast.LENGTH_SHORT).show()
+    private fun initObservable() {
+        viewModel.signUpStatus.observe(requireActivity()) {
+            when (it) {
+                is ResultState.Success -> {
+                    if (it.value) intentToHome()
+                }
+                is ResultState.Failure -> {
+                    Toast.makeText(requireContext(), it.throwable.message, Toast.LENGTH_SHORT)
+                        .show()
+                }
+                is ResultState.Loading -> {
+                    binding?.buttonNext?.setText(R.string.please_wait)
+                }
             }
+//            if (success =) {
+//                val intent = Intent(requireContext(), HomeActivity::class.java)
+//                startActivity(intent)
+//            } else {
+//                Toast.makeText(requireContext(), "Register failed.", Toast.LENGTH_SHORT).show()
+//            }
         }
+    }
+
+    private fun intentToHome() {
+        val intent = Intent(requireContext(), HomeActivity::class.java)
+        startActivity(intent)
     }
 }

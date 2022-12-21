@@ -50,14 +50,14 @@ class StepTwoFragment : Fragment() {
 //        initObservable()
 //        signup()
 
-//        val args = this.arguments
-//        siName = args?.getString(EXTRA_NAME).toString()
-//        siEmail = args?.getString(EXTRA_EMAIL).toString()
-//        siBirthdate = args?.getString(EXTRA_BIRTHDATE).toString()
-//        siPassword = args?.getString(EXTRA_PASSWORD).toString()
-//        siGender = "Pria"
+        val args = this.arguments
+        siName = args?.getString(EXTRA_NAME).toString()
+        siEmail = args?.getString(EXTRA_EMAIL).toString()
+        siBirthdate = args?.getString(EXTRA_BIRTHDATE).toString()
+        siPassword = args?.getString(EXTRA_PASSWORD).toString()
+        siGender = "Pria"
 //
-//        Log.d("EK", siName)
+        Log.d("EK", siName)
     }
 
     private fun setupSpinner() {
