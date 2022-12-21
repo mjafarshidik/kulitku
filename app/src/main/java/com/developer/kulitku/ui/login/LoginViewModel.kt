@@ -4,6 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.developer.kulitku.data.source.remote.ResultState
+import com.developer.kulitku.data.source.remote.signin.SignInBody
+import com.developer.kulitku.network.ApiConfig
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
@@ -13,34 +16,41 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginViewModel() : ViewModel() {
-    private var auth: FirebaseAuth = Firebase.auth
     var loading: MutableLiveData<Boolean> = MutableLiveData()
 
-    init {
-        loading.postValue(false)
-    }
+    private val _emailError = MutableLiveData<String>()
+    val emailError : LiveData<String> = _emailError
 
-    private val _signInStatus = MutableLiveData<Boolean>()
-    val signInStatus: LiveData<Boolean> = _signInStatus
+    private val _passwordError = MutableLiveData<String>()
+    val passwordError : LiveData<String> = _passwordError
+
+    private val _signInStatus = MutableLiveData<ResultState<Boolean>>()
+    val signInStatus: LiveData<ResultState<Boolean>> = _signInStatus
 
     fun signIn(email: String, password: String) {
-        loading.postValue(true)
-        viewModelScope.launch(Dispatchers.IO){
+        if (email == "" || email.isEmpty()) {
+            _emailError.value = "Silakan masukkan Email terlebih dahulu!"
+        } else if (password == "" || password.isEmpty()) {
+            _passwordError.value = "Silakan masukkan password terlebih dahulu!"
+        } else {
+            pushSignIn(email, password)
+        }
+    }
+    fun pushSignIn(email: String, pass: String) {
+        _signInStatus.value = ResultState.Loading
+        viewModelScope.launch(Dispatchers.IO) {
+            val body = SignInBody(email, pass)
             try {
-                auth?.let { login->
-                    login.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener { task: Task<AuthResult> ->
-                            if (task.isSuccessful) {
-                                _signInStatus.postValue(true)
-                                // Sign in success, update UI with the signed-in user's information
-                            } else {
-                                _signInStatus.postValue(false)
-                            }
-                            loading.postValue(false)
-                        }
+                val login = ApiConfig.getApiService().signIn(body)
+                val data = login.data
+                if (data != null) {
+//                    Hawk.put(KEY_LOGIN, data)
+                    _signInStatus.postValue(ResultState.Success(true))
+                } else {
+                    _signInStatus.postValue(ResultState.Failure(Exception(login.message ?: "Unknown Error")))
                 }
-            } catch (e: Exception){
-                loading.postValue(false)
+            } catch (e: Exception) {
+                _signInStatus.postValue(ResultState.Failure(e))
             }
         }
     }
