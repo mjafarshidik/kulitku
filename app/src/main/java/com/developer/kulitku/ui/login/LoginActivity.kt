@@ -3,6 +3,7 @@ package com.developer.kulitku.ui.login
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -57,18 +58,12 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            signInStatus.observe(this@LoginActivity) {
-                when (it) {
-                    is ResultState.Success -> {
-                        if (it.value) pushLogin()
-                    }
-                    is ResultState.Failure -> {
-                        binding.btnLogin.setText(R.string.signIn)
-                        Toast.makeText(this@LoginActivity, it.throwable.message, Toast.LENGTH_SHORT).show()
-                    }
-                    is ResultState.Loading -> {
-                        binding.btnLogin.setText(R.string.please_wait)
-                    }
+            signInStatus.observe(this@LoginActivity) { success ->
+                if (success == true) {
+                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    Toast.makeText(this@LoginActivity, "Authentication failed.", Toast.LENGTH_SHORT).show()
                 }
             }
         }
