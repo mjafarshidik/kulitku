@@ -6,11 +6,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.developer.kulitku.data.source.local.SharedPrefs
 import com.developer.kulitku.data.source.remote.RecommendationIngredientResponse
 import com.developer.kulitku.data.source.remote.ResultState
 import com.developer.kulitku.data.source.remote.ScanResponse
 import com.developer.kulitku.data.source.remote.SuggestionResponse
+import com.developer.kulitku.data.source.remote.signin.SignInResponse
 import com.developer.kulitku.network.ApiConfig
+import com.orhanobut.hawk.Hawk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -46,9 +49,16 @@ class ScanViewModel : ViewModel() {
             requestImageFile
         )
 
+        val userData: SignInResponse = Hawk.get(SharedPrefs.KEY_LOGIN)
+
+        val userId: MultipartBody.Part = MultipartBody.Part.createFormData(
+            "user_id",
+            userData.userId.toString(),
+        )
+
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val register = ApiConfig.getApiService().uploadImage(imageMultipart)
+                val register = ApiConfig.getApiService().uploadImage(userId, imageMultipart)
                 val data = register.data
                 if (data != null) {
                     _labelState.postValue(ResultState.Success(data))

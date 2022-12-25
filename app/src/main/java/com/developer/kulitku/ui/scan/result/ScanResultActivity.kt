@@ -15,10 +15,13 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.developer.kulitku.R
+import com.developer.kulitku.data.source.local.SharedPrefs
 import com.developer.kulitku.data.source.remote.ResultState
+import com.developer.kulitku.data.source.remote.signin.SignInResponse
 import com.developer.kulitku.databinding.ActivityScanResultBinding
 import com.developer.kulitku.ui.home.HomeActivity
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.orhanobut.hawk.Hawk
 import id.zelory.compressor.Compressor
 import kotlinx.coroutines.launch
 import java.io.File

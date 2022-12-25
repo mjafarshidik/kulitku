@@ -14,7 +14,7 @@ interface ApiService {
     @Multipart
     @POST("uploads")
     suspend fun uploadImage(
-        @Part uploads: MultipartBody.Part,
+        @Part userId: MultipartBody.Part, @Part uploads: MultipartBody.Part
     ): ResponseObject<ScanResponse>
 
     @POST("/register")
