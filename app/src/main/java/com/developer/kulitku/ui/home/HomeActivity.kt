@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.orhanobut.hawk.Hawk
+import kotlin.math.log
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
@@ -47,6 +48,16 @@ class HomeActivity : AppCompatActivity() {
 
         binding.fabScan.setOnClickListener {
             val intent = Intent(this, AddPhotoActivity::class.java)
+            startActivity(intent)
+        }
+
+        checkSession()
+    }
+
+    private fun checkSession() {
+        val loginData : SignInResponse? = Hawk.get(SharedPrefs.KEY_LOGIN)
+        if (loginData == null) {
+            val intent = Intent(this, SliderActivity::class.java)
             startActivity(intent)
         }
     }

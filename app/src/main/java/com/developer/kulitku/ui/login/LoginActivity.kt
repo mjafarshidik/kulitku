@@ -61,7 +61,7 @@ class LoginActivity : AppCompatActivity() {
             signInStatus.observe(this@LoginActivity) {
                 when (it) {
                     is ResultState.Success -> {
-                        if (it.value) pushSignIn()
+                        if (it.value) pushToSignIn()
                     }
                     is ResultState.Failure -> {
                         binding.btnLogin.setText(R.string.signIn)
@@ -96,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun pushSignIn() {
+    private fun pushToSignIn() {
         val intentSignIn = Intent(this@LoginActivity, HomeActivity::class.java)
         startActivity(intentSignIn)
     }

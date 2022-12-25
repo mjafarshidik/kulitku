@@ -2,6 +2,7 @@ package com.developer.kulitku.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.developer.kulitku.R
+import com.developer.kulitku.data.source.local.SharedPrefs
 import com.developer.kulitku.data.source.remote.kubaca.KubacaData
 import com.developer.kulitku.data.source.remote.kubaca.KubacaResponse
 import com.developer.kulitku.data.source.remote.kulitku.KulitkuData
 import com.developer.kulitku.data.source.remote.kulitku.KulitkuResponse
+import com.developer.kulitku.data.source.remote.signin.SignInResponse
 import com.developer.kulitku.databinding.FragmentHomeBaseBinding
 import com.developer.kulitku.ui.home.adapter.KubacaHomeAdapter
 import com.developer.kulitku.ui.home.adapter.KulitkuHomeAdapter
@@ -22,6 +25,7 @@ import com.developer.kulitku.ui.splash.SliderActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.orhanobut.hawk.Hawk
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -53,10 +57,6 @@ class HomeBaseFragment : Fragment() {
         }
 
         checkSession()
-
-        val user = Firebase.auth.currentUser
-        val username = user?.email
-        binding.textviewUsername.text = username?.replace("@gmail.com", "")
 
         val date = Calendar.getInstance().time
         val sdf = SimpleDateFormat("dd LLLL yyyy")
@@ -108,11 +108,13 @@ class HomeBaseFragment : Fragment() {
     }
 
     private fun checkSession() {
-        val user = FirebaseAuth.getInstance().currentUser
-        if (user == null) {
+        val loginData : SignInResponse? = Hawk.get(SharedPrefs.KEY_LOGIN)
+        if (loginData == null) {
             val intent = Intent(requireContext(), SliderActivity::class.java)
             startActivity(intent)
         }
+        val username = loginData?.email
+        binding.textviewUsername.text = username?.replace("@gmail.com", "")
     }
 
     override fun onResume() {

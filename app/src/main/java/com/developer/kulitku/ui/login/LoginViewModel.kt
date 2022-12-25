@@ -19,8 +19,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class LoginViewModel() : ViewModel() {
-    var loading: MutableLiveData<Boolean> = MutableLiveData()
-
     private val _emailError = MutableLiveData<String>()
     val emailError : LiveData<String> = _emailError
 
@@ -41,6 +39,7 @@ class LoginViewModel() : ViewModel() {
     }
 
     fun pushSignIn(email: String, pass: String) {
+        _signInStatus.value = ResultState.Loading
         viewModelScope.launch(Dispatchers.IO) {
             val body = SignInBody(email, pass)
             try {
@@ -49,6 +48,8 @@ class LoginViewModel() : ViewModel() {
                 if (data != null) {
                     Hawk.put(KEY_LOGIN, data)
                     _signInStatus.postValue(ResultState.Success(true))
+                } else {
+                    _signInStatus.postValue((ResultState.Failure(Exception(login.message ?: "Unknown Error"))))
                 }
             } catch (e: Exception) {
                 _signInStatus.postValue(ResultState.Failure(e))
