@@ -1,13 +1,10 @@
 package com.developer.kulitku.network
 
-import com.developer.kulitku.data.source.remote.ResponseObject
-import com.developer.kulitku.data.source.remote.ScanResponse
-import com.developer.kulitku.data.source.remote.SignUpBody
-import com.developer.kulitku.data.source.remote.SignUpResponse
+import com.developer.kulitku.data.source.remote.*
+import com.developer.kulitku.data.source.remote.kulitku.KulitkuResponse
 import com.developer.kulitku.data.source.remote.signin.SignInBody
 import com.developer.kulitku.data.source.remote.signin.SignInResponse
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface ApiService {
@@ -26,4 +23,9 @@ interface ApiService {
     suspend fun signIn(
         @Body body: SignInBody
     ): ResponseObject<SignInResponse>
+
+    @GET("results/{user_id}/")
+    suspend fun getHistoryScan(
+        @Path("user_id") id: Int
+    ): ResponseList<KulitkuResponse>
 }

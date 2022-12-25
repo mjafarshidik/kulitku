@@ -2,7 +2,6 @@ package com.developer.kulitku.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,16 +14,11 @@ import com.developer.kulitku.R
 import com.developer.kulitku.data.source.local.SharedPrefs
 import com.developer.kulitku.data.source.remote.kubaca.KubacaData
 import com.developer.kulitku.data.source.remote.kubaca.KubacaResponse
-import com.developer.kulitku.data.source.remote.kulitku.KulitkuData
 import com.developer.kulitku.data.source.remote.kulitku.KulitkuResponse
 import com.developer.kulitku.data.source.remote.signin.SignInResponse
 import com.developer.kulitku.databinding.FragmentHomeBaseBinding
 import com.developer.kulitku.ui.home.adapter.KubacaHomeAdapter
-import com.developer.kulitku.ui.home.adapter.KulitkuHomeAdapter
 import com.developer.kulitku.ui.splash.SliderActivity
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.orhanobut.hawk.Hawk
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,7 +43,7 @@ class HomeBaseFragment : Fragment() {
             vpHome.adapter = HomeBasePagerAdapter(requireActivity().supportFragmentManager)
             rvKubaca.setHasFixedSize(true)
             listKubaca.addAll(KubacaData.listData)
-            listKulitku.addAll(KulitkuData.listData)
+//            listKulitku.addAll(KulitkuData.listData)
             showRecyclerList()
             navigateToKubaca()
             navigateToKutulis()
@@ -101,9 +95,9 @@ class HomeBaseFragment : Fragment() {
             rvKubaca.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             rvKulitku.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             val kubacaAdapter = KubacaHomeAdapter(listKubaca)
-            val kulitkuAdapter = KulitkuHomeAdapter(listKulitku)
+//            val kulitkuAdapter = KulitkuHomeAdapter(listKulitku)
             rvKubaca.adapter = kubacaAdapter
-            rvKulitku.adapter = kulitkuAdapter
+//            rvKulitku.adapter = kulitkuAdapter
         }
     }
 
