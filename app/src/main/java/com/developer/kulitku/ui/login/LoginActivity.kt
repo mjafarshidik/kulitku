@@ -58,12 +58,18 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
 
-            signInStatus.observe(this@LoginActivity) { success ->
-                if (success == true) {
-                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(this@LoginActivity, "Authentication failed.", Toast.LENGTH_SHORT).show()
+            signInStatus.observe(this@LoginActivity) {
+                when (it) {
+                    is ResultState.Success -> {
+                        if (it.value) pushSignIn()
+                    }
+                    is ResultState.Failure -> {
+                        binding.btnLogin.setText(R.string.signIn)
+                        Toast.makeText(this@LoginActivity, it.throwable.message, Toast.LENGTH_SHORT).show()
+                    }
+                    is ResultState.Loading -> {
+                        binding.btnLogin.setText(R.string.please_wait)
+                    }
                 }
             }
         }
@@ -75,7 +81,6 @@ class LoginActivity : AppCompatActivity() {
                 if (btnLogin.text != getString(R.string.please_wait)) {
                     siEmail = email.text.toString()
                     siPassword = password.text.toString()
-
                     viewModel.signIn(siEmail, siPassword)
                 }
             }
@@ -91,7 +96,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun pushLogin() {
+    private fun pushSignIn() {
         val intentSignIn = Intent(this@LoginActivity, HomeActivity::class.java)
         startActivity(intentSignIn)
     }

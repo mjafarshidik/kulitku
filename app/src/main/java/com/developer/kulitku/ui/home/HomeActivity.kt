@@ -49,15 +49,5 @@ class HomeActivity : AppCompatActivity() {
             val intent = Intent(this, AddPhotoActivity::class.java)
             startActivity(intent)
         }
-        checkSession()
-    }
-
-    private fun checkSession() {
-        val signInData: SignInResponse? = Hawk.get(SharedPrefs.KEY_LOGIN)
-        Log.d("BUTU", signInData.toString())
-        if (signInData == null) {
-            Intent(this, SliderActivity::class.java)
-            startActivity(intent)
-        }
     }
 }

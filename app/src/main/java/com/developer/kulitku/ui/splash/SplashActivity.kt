@@ -33,11 +33,11 @@ class SplashActivity : AppCompatActivity() {
             startActivity(Intent(this@SplashActivity, HomeActivity::class.java))
             finish()
         }, 2000)
+        Hawk.init(baseContext).build()
         checkSession()
     }
 
     private fun checkSession() {
-        Hawk.init(baseContext).build()
         val signInData: SignInResponse? = Hawk.get(SharedPrefs.KEY_LOGIN)
         if (signInData == null) {
             Intent(this, SliderActivity::class.java)

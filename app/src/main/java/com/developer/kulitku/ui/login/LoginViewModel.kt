@@ -27,8 +27,8 @@ class LoginViewModel() : ViewModel() {
     private val _passwordError = MutableLiveData<String>()
     val passwordError : LiveData<String> = _passwordError
 
-    private val _signInStatus = MutableLiveData<Boolean>()
-    val signInStatus: LiveData<Boolean> = _signInStatus
+    private val _signInStatus = MutableLiveData<ResultState<Boolean>>()
+    val signInStatus: LiveData<ResultState<Boolean>> = _signInStatus
 
     fun signIn(email: String, pass: String) {
         if (email == "" || email.isEmpty()) {
@@ -39,19 +39,19 @@ class LoginViewModel() : ViewModel() {
             pushSignIn(email, pass)
         }
     }
+
     fun pushSignIn(email: String, pass: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val body = SignInBody(email, pass)
             try {
                 val login = ApiConfig.getApiService().signIn(body)
                 val data = login.data
-                Log.d("BUTUU", data.toString())
                 if (data != null) {
                     Hawk.put(KEY_LOGIN, data)
-                    _signInStatus.postValue(true)
+                    _signInStatus.postValue(ResultState.Success(true))
                 }
             } catch (e: Exception) {
-                _signInStatus.postValue(false)
+                _signInStatus.postValue(ResultState.Failure(e))
             }
         }
     }
