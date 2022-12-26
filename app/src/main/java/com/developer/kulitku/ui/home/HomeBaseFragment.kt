@@ -6,18 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.developer.kulitku.R
 import com.developer.kulitku.data.source.local.SharedPrefs
+import com.developer.kulitku.data.source.remote.ResultState
 import com.developer.kulitku.data.source.remote.kubaca.KubacaData
 import com.developer.kulitku.data.source.remote.kubaca.KubacaResponse
 import com.developer.kulitku.data.source.remote.kulitku.KulitkuResponse
 import com.developer.kulitku.data.source.remote.signin.SignInResponse
 import com.developer.kulitku.databinding.FragmentHomeBaseBinding
 import com.developer.kulitku.ui.home.adapter.KubacaHomeAdapter
+import com.developer.kulitku.ui.kubuku.KubukuAdapter
+import com.developer.kulitku.ui.kubuku.KubukuViewModel
 import com.developer.kulitku.ui.splash.SliderActivity
 import com.orhanobut.hawk.Hawk
 import java.text.SimpleDateFormat
@@ -27,7 +33,7 @@ class HomeBaseFragment : Fragment() {
     private var _binding: FragmentHomeBaseBinding? = null
     private val binding get() = _binding!!
     private var listKubaca: ArrayList<KubacaResponse> = arrayListOf()
-    private var listKulitku: ArrayList<KulitkuResponse> = arrayListOf()
+    private val kubukuViewModel: KubukuViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -41,9 +47,17 @@ class HomeBaseFragment : Fragment() {
 
         binding.apply {
             vpHome.adapter = HomeBasePagerAdapter(requireActivity().supportFragmentManager)
-            rvKubaca.setHasFixedSize(true)
-            listKubaca.addAll(KubacaData.listData)
-//            listKulitku.addAll(KulitkuData.listData)
+            rvKubuku.setHasFixedSize(true)
+
+            //kubuku get data and show
+            kubukuViewModel.getAllArticle()
+            showRecyclerListKubuku()
+            with(binding.rvKubuku) {
+                this.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+                this.setHasFixedSize(true)
+                this.adapter = adapter
+            }
+
             showRecyclerList()
             navigateToKubaca()
             navigateToKutulis()
@@ -91,13 +105,34 @@ class HomeBaseFragment : Fragment() {
     }
 
     private fun showRecyclerList() {
+
         binding.apply {
-            rvKubaca.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
             rvKulitku.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
-            val kubacaAdapter = KubacaHomeAdapter(listKubaca)
-//            val kulitkuAdapter = KulitkuHomeAdapter(listKulitku)
-            rvKubaca.adapter = kubacaAdapter
-//            rvKulitku.adapter = kulitkuAdapter
+        }
+    }
+
+    private fun showRecyclerListKubuku() {
+        binding.apply {
+            kubukuViewModel.apply {
+                getListArticle.observe(requireActivity()) {
+                    when (it) {
+                        is ResultState.Success -> {
+                            val adapter = KubukuAdapter()
+                            rvKubuku.adapter = adapter
+                            adapter.setData(it.value)
+                        }
+                        is ResultState.Failure -> {
+                            Toast.makeText(
+                                requireActivity(),
+                                it.throwable.message,
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                        is ResultState.Loading -> {
+                        }
+                    }
+                }
+            }
         }
     }
 
