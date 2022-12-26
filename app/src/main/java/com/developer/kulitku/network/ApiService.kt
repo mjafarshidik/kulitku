@@ -1,6 +1,7 @@
 package com.developer.kulitku.network
 
 import com.developer.kulitku.data.source.remote.*
+import com.developer.kulitku.data.source.remote.kubuku.KubukuResponse
 import com.developer.kulitku.data.source.remote.kulitku.KulitkuResponse
 import com.developer.kulitku.data.source.remote.signin.SignInBody
 import com.developer.kulitku.data.source.remote.signin.SignInResponse
@@ -23,6 +24,9 @@ interface ApiService {
     suspend fun signIn(
         @Body body: SignInBody
     ): ResponseObject<SignInResponse>
+
+    @GET("/article")
+    suspend fun getAllArticle(): ResponseList<KubukuResponse>
 
     @GET("results/{user_id}/")
     suspend fun getHistoryScan(
